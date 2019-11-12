@@ -6266,15 +6266,104 @@ declare namespace sap {
 		setTextDirection(sTextDirection: sap.ui.core.TextDirection): sap.m.Token;
 	  }
 	  
-	  interface InputProperties extends sap.m.InputBaseProperties {
-		  description?: string;
-		  maxLength?: number,
-		  selectedKey?: string;
-		  showSuggestion?: boolean,
-		  showValueHelp?: boolean,
-		  type?: sap.m.InputType,
-		  valueHelpOnly?: boolean
-	  }
+		interface InputProperties extends sap.m.InputBaseProperties {
+			/**
+			 * Specifies whether autocomplete is enabled. Works only if "showSuggestion" property is set to true.
+			 */
+			autocomplete?: boolean;
+
+			/**
+			 * The description is a text after the input field, e.g. units of measurement, currencies.
+			 */
+			description?: string;
+
+			/**
+			 * Specifies whether the suggestions highlighting is enabled.
+			 */
+			enableSuggestionsHighlighting?: boolean;
+
+			/**
+			 * This property only takes effect if the description property is set. It controls the distribution of space between the input field and the description text. The default value is 50% leaving the other 50% for the description.
+			 */
+			fieldWidth?: string;
+
+			/**
+			 * Defines whether to filter the provided suggestions before showing them to the user.
+			 */
+			filterSuggests?: boolean;
+
+			/**
+			 * Maximum number of characters. Value '0' means the feature is switched off. This parameter is not compatible with the input type sap.m.InputType.Number. If the input type is set to Number, the maxLength value is ignored.
+			 */
+			maxLength?: number;
+
+			/**
+			 * If set, the value of this parameter will control the horizontal size of the suggestion list to display more data. This allows suggestion lists to be wider than the input field if there is enough space available.
+			 * By default, the suggestion list is always as wide as the input field. Note: The value will be ignored if the actual width of the input field is larger than the specified parameter value.
+			 */
+			maxSuggestionWidth?: string;
+
+			/**
+			 * Defines the key of the selected item.
+			 * Note: If duplicate keys exist, the first item matching the key is used.
+			 */
+			selectedKey?: string;
+
+			/**
+			 * If this is set to true, suggest event is fired when user types in the input. Changing the suggestItems aggregation in suggest event listener will show suggestions within a popup.
+			 * When runs on phone, input will first open a dialog where the input and suggestions are shown. When runs on a tablet, the suggestions are shown in a popup next to the input.
+			 */
+			showSuggestion?: boolean;
+
+			/**
+			 * For tabular suggestions, this flag will show/hide the button at the end of the suggestion table that triggers the event "valueHelpRequest" when pressed. The default value is true.
+			 * NOTE: If suggestions are not tabular or no suggestions are used, the button will not be displayed and this flag is without effect.
+			 */
+			showTableSuggestionValueHelp?: boolean;
+
+			/**
+			 * If set to true, a value help indicator will be displayed inside the control. When clicked the event "valueHelpRequest" will be fired.
+			 */
+			showValueHelp?: boolean;
+
+			/**
+			 * Minimum length of the entered text in input before suggest event is fired. The default value is 1 which means the suggest event is fired after user types in input. When it's set to 0, suggest event is fired when input with no text gets focus.
+			 */
+			startSuggestion?: number;
+
+			/**
+			 * Defines the validation callback function called when a suggestion row gets selected.
+			 */
+			suggestionRowValidator?: string;
+
+			/**
+			 * Defines the display text format mode.
+			 */
+			textFormatMode?: sap.m.InputTextFormatMode;
+
+			/**
+			 * Defines the display text formatter function.
+			 */
+			textFormatter?: string;
+
+			/**
+			 * HTML type of the internal input tag (e.g. Text, Number, Email, Phone). The particular effect of this property differs depending on the browser and the current language settings, especially for the type Number.
+			 * This parameter is intended to be used with touch devices that use different soft keyboard layouts depending on the given input type.
+			 * Only the default value sap.m.InputType.Text may be used in combination with data model formats. sap.ui.model defines extended formats that are mostly incompatible with normal HTML representations for numbers and dates.
+			 */
+			type?: sap.m.InputType;
+
+			/**
+			 * If set to true, direct text input is disabled and the control will trigger the event "valueHelpRequest" for all user interactions.
+			 * The properties "showValueHelp", "editable", and "enabled" must be set to true, otherwise the property will have no effect
+			 */
+			valueHelpOnly?: boolean;
+
+			/**
+			 * Indicates when the value gets updated with the user changes: At each keystroke (true) or first when the user presses enter or tabs out (false).
+			 */
+			valueLiveUpdate?: boolean;
+		}
   
 	  interface InputAggregations extends sap.ui.core.ElementAggregations {
 		  suggestionColumns?: sap.m.Column[];
@@ -44355,6 +44444,13 @@ declare namespace sap {
 	  enum WrappingType {
 		  "Hyphenated",
 		  "Normal"
+	  }
+
+	  enum InputTextFormatMode {
+		  Key = "Key",
+		  KeyValue = "KeyValue",
+		  Value = "Value",
+		  ValueKey = "ValueKey"
 	  }
 	}
   }
