@@ -5,12 +5,14 @@
 /// <reference path="./model/index.d.ts" />
 /// <reference path="./unified/index.d.ts" />
 
-interface Control<T> {
-	new (): T;
-}
-
 declare namespace sap {
 	namespace ui {
-		function define(modulePaths: string[], loadedModules: (...modules: Control<sap.ui.base.Object>[]) => void);
+		interface Constructor<T extends sap.ui.base.Object = sap.ui.base.Object, U extends {} = {}> {
+			new (): T;
+			new (mSettings: U): T;
+			new (sId: string): T;
+			new (sId: string, mSettings: U): T;
+		}
+		function define(modulePaths: string[], loadedModules: (...modules: Constructor[]) => void);
 	}
 }
