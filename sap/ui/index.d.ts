@@ -13,6 +13,6 @@ declare namespace sap {
 			new (sId: string): T;
 			new (sId: string, mSettings: U): T;
 		}
-		function define(modulePaths: string[], loadedModules: (...modules: Constructor[]) => void);
+		function define(modulePaths: string[], loadedModules: (...modules: Constructor[]) => void | Function);
 	}
 }
