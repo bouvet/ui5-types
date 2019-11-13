@@ -12,6 +12,10 @@ declare namespace sap {
 			new (mSettings: U): T;
 			new (sId: string): T;
 			new (sId: string, mSettings: U): T;
+
+			extend(sClassName: string): Constructor<T, U>
+			extend(sClassName: string, oClassInfo: object): Constructor<T, U>
+			extend(sClassName: string, oClassInfo: object, FNMetaImpl: Function): Constructor<T, U>
 		}
 		function define(modulePaths: string[], loadedModules: (...modules: Constructor[]) => void | Function): void;
 	}
