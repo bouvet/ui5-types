@@ -116,6 +116,10 @@ declare namespace sap {
 				 * sap.ui.base.Object.extend}.
 				 */
 				getMetadata(): void;
+
+				static extend(sClassName: string): Function;
+				static extend(sClassName: string, oClassInfo: object): Function;
+				static extend(sClassName: string, oClassInfo: object, FNMetaImpl: Function): Function;
 			}
 			/**
 			 * Metadata for a class.
