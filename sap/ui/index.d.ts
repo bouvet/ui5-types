@@ -17,6 +17,7 @@ declare namespace sap {
 			extend(sClassName: string, oClassInfo: object): Constructor<T, U>
 			extend(sClassName: string, oClassInfo: object, FNMetaImpl: Function): Constructor<T, U>
 		}
-		function define(modulePaths: string[], loadedModules: (...modules: Constructor[]) => void | Function | object): void;
+
+		function define<T extends typeof sap.ui.base.Object>(modulePaths: string[], loadedModules: (...modules: Array<T>) => void | Function | object): void;
 	}
 }
