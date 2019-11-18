@@ -9025,7 +9025,7 @@ declare namespace sap {
 				 * of Component should override this hook to implement any necessaryinitialization. <b>When overriding
 				 * this function make sure to invoke theinit function of the UIComponent as well!</b>
 				 */
-				init(): void;
+				init(...args: any[]): void;
 
 				/**
 				 * Function is called when the rendering of the ComponentContainer is completed.Applications must not
