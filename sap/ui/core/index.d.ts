@@ -7885,7 +7885,7 @@ declare namespace sap {
 				 * directly, it is called by theframework while the constructor of an Component is executed.Subclasses
 				 * of Component should override this hook to implement any necessaryinitialization.
 				 */
-				init(): void;
+				init(...args: any[]): void;
 
 				/**
 				 * The hook which gets called when the static configuration of the componenthas been changed by some
