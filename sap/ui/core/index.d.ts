@@ -9000,7 +9000,7 @@ declare namespace sap {
 				 * @param oControllerOrView either a view or controller
 				 * @returns the router instance
 				 */
-				getRouterFor(
+				static getRouterFor(
 					oControllerOrView: sap.ui.core.mvc.View | sap.ui.core.mvc.Controller
 				): sap.m.routing.Router;
 
