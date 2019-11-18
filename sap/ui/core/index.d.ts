@@ -2009,7 +2009,7 @@ declare namespace sap {
 					 * @param oLocale Locale to ask for locale specific texts/settings
 					 * @returns date instance of the DateFormat
 					 */
-					getDateInstance(
+					static getDateInstance(
 						oFormatOptions: any,
 						oLocale?: sap.ui.core.Locale
 					): sap.ui.core.format.DateFormat;
@@ -2020,7 +2020,7 @@ declare namespace sap {
 					 * @param oLocale Locale to ask for locale specific texts/settings
 					 * @returns datetime instance of the DateFormat
 					 */
-					getDateTimeInstance(
+					static getDateTimeInstance(
 						oFormatOptions: any,
 						oLocale?: sap.ui.core.Locale
 					): sap.ui.core.format.DateFormat;
@@ -2031,7 +2031,7 @@ declare namespace sap {
 					 * @param oLocale Locale to ask for locale specific texts/settings
 					 * @returns time instance of the DateFormat
 					 */
-					getTimeInstance(
+					static getTimeInstance(
 						oFormatOptions: any,
 						oLocale?: sap.ui.core.Locale
 					): sap.ui.core.format.DateFormat;
