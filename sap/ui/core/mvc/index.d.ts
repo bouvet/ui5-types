@@ -153,7 +153,7 @@ declare namespace sap {
 					 * @param sId View local ID of the element
 					 * @returns element by its ID or <code>undefined</code>
 					 */
-					byId(sId: string): sap.ui.core.Element;
+					byId<T = sap.ui.core.Element>(sId: string): T;
 
 					/**
 					 * Override clone method to avoid conflict between generic cloning of contentand content creation as
