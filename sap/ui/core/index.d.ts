@@ -1982,6 +1982,23 @@ declare namespace sap {
 						"TOWARDS_ZERO"
 					}
 				}
+
+				namespace DateFormat {
+					interface Options {
+						format?: string;
+						pattern?: string;
+						style?: string;
+						strictParsing?: boolean;
+						relative?: boolean;
+						relativeRange?: boolean;
+						relativeScale?: string;
+						relativeStyle?: string;
+						interval?: boolean;
+						singleIntervalValue?: boolean;
+						UTC?: boolean;
+						calendarType?: sap.ui.core.CalendarType;
+					}
+				}
 				/**
 				 * The DateFormat is a static class for formatting and parsing date and time values accordingto a set
 				 * of format options.Supported format options are pattern based on Unicode LDML Date Format notation.If
@@ -2010,7 +2027,7 @@ declare namespace sap {
 					 * @returns date instance of the DateFormat
 					 */
 					static getDateInstance(
-						oFormatOptions: any,
+						oFormatOptions: DateFormat.Options,
 						oLocale?: sap.ui.core.Locale
 					): sap.ui.core.format.DateFormat;
 
@@ -2021,7 +2038,7 @@ declare namespace sap {
 					 * @returns datetime instance of the DateFormat
 					 */
 					static getDateTimeInstance(
-						oFormatOptions: any,
+						oFormatOptions: DateFormat.Options,
 						oLocale?: sap.ui.core.Locale
 					): sap.ui.core.format.DateFormat;
 
@@ -2032,7 +2049,7 @@ declare namespace sap {
 					 * @returns time instance of the DateFormat
 					 */
 					static getTimeInstance(
-						oFormatOptions: any,
+						oFormatOptions: DateFormat.Options,
 						oLocale?: sap.ui.core.Locale
 					): sap.ui.core.format.DateFormat;
 
