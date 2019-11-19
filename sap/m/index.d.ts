@@ -35404,12 +35404,29 @@ declare namespace sap {
 			 */
 			setWidth(sWidth: string): sap.m.P13nColumnsItem;
 		}
+
+		namespace StandardListItem {
+			interface Properties extends ListItemBaseProperties {
+				activeIcon?: string;
+				adaptTitleSize?: boolean;
+				description?: string;
+				icon?: string;
+				iconDensityAware?: boolean;
+				iconInset?: boolean;
+				info?: string;
+				infoState?: sap.ui.core.ValueState;
+				infoTextDirection?: sap.ui.core.TextDirection;
+				title?: string;
+				titleTextDirection?: sap.ui.core.TextDirection;
+				wrapping?: boolean;
+			}
+		}
 		/**
 		 * <code>sap.m.StandardListItem</code> is a list item providing the most common use cases, e.g. image,
 		 * title and description.
 		 * @resource sap/m/StandardListItem.js
 		 */
-		export class StandardListItem extends sap.m.ListItemBase {
+		export class StandardListItem extends sap.m.ListItemBase<StandardListItem.Properties> {
 			/**
 			 * Constructor for a new StandardListItem.Accepts an object literal <code>mSettings</code> that defines
 			 * initialproperty values, aggregated and associated objects as well as event handlers.See {@link
