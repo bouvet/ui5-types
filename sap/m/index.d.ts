@@ -5163,7 +5163,7 @@ declare namespace sap {
 		interface TextProperties extends sap.ui.core.ControlProperties {
 			maxLines?: number;
 			renderWhitespace?: boolean;
-			text?: string;
+			text?: string | sap.ui.base.PropertyBindingInfo<string>;
 			textAlign?: sap.ui.core.TextAlign;
 			textDirection?: sap.ui.core.TextDirection;
 			width?: string;
