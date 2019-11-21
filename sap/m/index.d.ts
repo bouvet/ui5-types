@@ -5220,16 +5220,6 @@ declare namespace sap {
 			constructor(mSettings?: TextProperties);
 
 			/**
-			 * Constructor for a new Text.Accepts an object literal <code>mSettings</code> that defines
-			 * initialproperty values, aggregated and associated objects as well as event handlers.See {@link
-			 * sap.ui.base.ManagedObject#constructor} for a general description of the syntax of the settings
-			 * object.
-			 * @param sId ID for the new control, generated automatically if no ID is given
-			 * @param mSettings Initial settings for the new control
-			 */
-			constructor(mSettings?: any);
-
-			/**
 			 * Binds property <code>text</code> to model data.See {@link sap.ui.base.ManagedObject#bindProperty
 			 * ManagedObject.bindProperty} for a detailed description of the possible properties of
 			 * <code>oBindingInfo</code>
