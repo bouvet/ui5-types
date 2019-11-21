@@ -6887,7 +6887,7 @@ declare namespace sap {
 				 * @param sModelName undefined
 				 * @returns reference to the instance itself
 				 */
-				unbindElement(sModelName: string): sap.ui.base.ManagedObject;
+				unbindElement(sModelName?: string): sap.ui.base.ManagedObject;
 			}
 			/**
 			 * This element used to provide messages. Rendering must be done within the control that uses this kind
