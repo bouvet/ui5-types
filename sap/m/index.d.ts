@@ -39252,13 +39252,55 @@ declare namespace sap {
 			 */
 			getMetadata(): sap.ui.base.Metadata;
 		}
+
+		namespace TableSelectDialog {
+			interface Properties extends sap.ui.core.ControlProperties {
+				confirmButtonText?: string;
+				contentHeight?: string;
+				contentWidth?: string;
+				draggable?: boolean;
+				growing?: boolean;
+				growingThreshold?: number;
+				multiSelect?: boolean;
+				noDataText?: string;
+				rememberSelections?: boolean;
+				resizable?: boolean;
+				showClearButton?: boolean;
+				title?: string;
+				titleAlignment?: sap.m.TitleAlignment;
+			}
+
+			interface Aggregations extends sap.ui.core.ElementAggregations {
+				columns?: sap.m.Column[];
+				items?: sap.m.ColumnListItem[];
+			}
+
+			namespace Events {
+				type ConfirmParameters = {
+					selectedItem?: sap.m.ColumnListItem;
+					selectedItems?: sap.m.ColumnListItem[];
+					selectedContexts?: sap.ui.model.Context[];
+				} & sap.ui.base.EventParameters;
+
+				type Confirm = sap.ui.base.Event<TableSelectDialog, ConfirmParameters>;
+				type ConfirmHandler = (oEvent: Confirm) => void;
+
+				type LiveChangeParameters = {
+					value?: string;
+					itemsBinding?: sap.ui.model.ListBinding;
+				} & sap.ui.base.EventParameters;
+
+				type LiveChange = sap.ui.base.Event<TableSelectDialog, LiveChangeParameters>;
+				type LiveChangeHandler = (oEvent: LiveChange) => void;
+			}
+		}
 		/**
 		 * TableSelectDialog provides you with an easier way to create a dialog that contains a list with
 		 * grouping and search functionalities.The Table used in a SelectDialog is a Table with Columns. After
 		 * selecting an item, the dialog is closed and a callback function returns the item being selected.
 		 * @resource sap/m/TableSelectDialog.js
 		 */
-		export class TableSelectDialog extends sap.ui.core.Control {
+		export class TableSelectDialog extends sap.ui.core.Control<TableSelectDialog.Properties, TableSelectDialog.Aggregations> {
 			/**
 			 * Sets the binding context for the internal table AND the current control so that both controls can be
 			 * used with the context.
@@ -39335,8 +39377,15 @@ declare namespace sap {
 			 */
 			attachConfirm(
 				oData: any,
-				fnFunction: any,
-				oListener?: any
+				fnFunction: TableSelectDialog.Events.ConfirmHandler,
+				oListener: any
+			): sap.m.TableSelectDialog;
+			attachConfirm(
+				oData: any,
+				fnFunction: TableSelectDialog.Events.ConfirmHandler
+			): sap.m.TableSelectDialog;
+			attachConfirm(
+				fnFunction: TableSelectDialog.Events.ConfirmHandler
 			): sap.m.TableSelectDialog;
 
 			/**
@@ -45610,6 +45659,15 @@ declare namespace sap {
 			"Bottom",
 			"Top",
 			"Vertical"
+		}
+
+		/**
+		 * Declares the type of title alignment for some controls
+		 */
+		enum TitleAlignment {
+			Auto = "Auto",
+			Center = "Center",
+			Start = "Start"
 		}
 		/**
 		 * Types of three-column layout for the sap.m.FlexibleColumnLayout control
