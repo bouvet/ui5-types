@@ -39403,8 +39403,15 @@ declare namespace sap {
 			 */
 			attachLiveChange(
 				oData: any,
-				fnFunction: any,
-				oListener?: any
+				fnFunction: TableSelectDialog.Events.LiveChangeHandler,
+				oListener: any
+			): sap.m.TableSelectDialog;
+			attachLiveChange(
+				oData: any,
+				fnFunction: TableSelectDialog.Events.LiveChangeHandler,
+			): sap.m.TableSelectDialog;
+			attachLiveChange(
+				fnFunction: TableSelectDialog.Events.LiveChangeHandler
 			): sap.m.TableSelectDialog;
 
 			/**
