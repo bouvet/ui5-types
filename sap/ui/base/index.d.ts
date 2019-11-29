@@ -725,8 +725,8 @@ declare namespace sap {
 				 * @param oBindingInfo the binding info
 				 * @returns reference to the instance itself
 				 */
-				bindAggregation(
-					sName: keyof U,
+				bindAggregation<K extends keyof U>(
+					sName: K,
 					oBindingInfo: AggregationBindingInfo
 				): sap.ui.base.ManagedObject;
 

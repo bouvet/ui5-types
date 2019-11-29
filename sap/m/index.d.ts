@@ -6595,17 +6595,6 @@ declare namespace sap {
 			): sap.m.Input;
 
 			/**
-			 * Forwards aggregations with the name of items or columns to the internal table.
-			 * @param sAggregationName the name for the binding
-			 * @param oBindingInfo the configuration parameters for the binding
-			 * @returns this pointer for chaining
-			 */
-			bindAggregation(
-				sAggregationName: string,
-				oBindingInfo: sap.ui.base.AggregationBindingInfo
-			): sap.m.Input;
-
-			/**
 			 * Binds aggregation <code>suggestionColumns</code> to model data.See {@link
 			 * sap.ui.base.ManagedObject#bindAggregation ManagedObject.bindAggregation} for a detailed description
 			 * of the possible properties of <code>oBindingInfo</code>.
@@ -18585,8 +18574,8 @@ declare namespace sap {
 			 * @param oBindingInfo The configuration parameters for the binding
 			 * @returns this pointer for chaining
 			 */
-			bindAggregation(
-				sAggregationName: string,
+			bindAggregation<K = keyof sap.ui.core.ElementAggregations>(
+				sAggregationName: K,
 				oBindingInfo: sap.ui.base.AggregationBindingInfo
 			): sap.m.IconTabBar;
 
@@ -25039,12 +25028,6 @@ declare namespace sap {
 			addItem(oItem: sap.m.ListItemBase): sap.m.SelectDialog;
 
 			/**
-			 * Forward method to the inner dialog: addStyleClass
-			 * @returns this pointer for chaining
-			 */
-			addStyleClass(): sap.m.SelectDialog;
-
-			/**
 			 * Attaches event handler <code>fnFunction</code> to the <code>cancel</code> event of this
 			 * <code>sap.m.SelectDialog</code>.When called, the context of the event handler (its
 			 * <code>this</code>) will be bound to <code>oListener</code> if specified, otherwise it will be bound
@@ -25119,17 +25102,6 @@ declare namespace sap {
 				oData: any,
 				fnFunction: any,
 				oListener?: any
-			): sap.m.SelectDialog;
-
-			/**
-			 * Forwards aggregations with the name of items to the internal list.
-			 * @param sAggregationName The name for the binding
-			 * @param oBindingInfo The configuration parameters for the binding
-			 * @returns this pointer for chaining
-			 */
-			bindAggregation(
-				sAggregationName: string,
-				oBindingInfo: sap.ui.base.AggregationBindingInfo
 			): sap.m.SelectDialog;
 
 			/**
@@ -39328,12 +39300,6 @@ declare namespace sap {
 			addItem(oItem: sap.m.ColumnListItem): sap.m.TableSelectDialog;
 
 			/**
-			 * Transfers method to the inner dialog: addStyleClass
-			 * @returns this pointer for chaining
-			 */
-			addStyleClass(): sap.m.TableSelectDialog;
-
-			/**
 			 * Attaches event handler <code>fnFunction</code> to the <code>cancel</code> event of this
 			 * <code>sap.m.TableSelectDialog</code>.When called, the context of the event handler (its
 			 * <code>this</code>) will be bound to <code>oListener</code> if specified, otherwise it will be bound
@@ -39421,17 +39387,6 @@ declare namespace sap {
 				oData: any,
 				fnFunction: any,
 				oListener?: any
-			): sap.m.TableSelectDialog;
-
-			/**
-			 * Forwards aggregations with the name of items or columns to the internal table.
-			 * @param sAggregationName The name for the binding
-			 * @param oBindingInfo The configuration parameters for the binding
-			 * @returns this pointer for chaining
-			 */
-			bindAggregation(
-				sAggregationName: string,
-				oBindingInfo: sap.ui.base.AggregationBindingInfo
 			): sap.m.TableSelectDialog;
 
 			/**
