@@ -18568,16 +18568,6 @@ declare namespace sap {
 				fnFunction: sap.ui.base.EventHandler<IconTabBar>
 			): sap.m.IconTabBar;
 
-			/**
-			 * Forwards aggregations with the name of items to the internal list.
-			 * @param sAggregationName The name for the binding
-			 * @param oBindingInfo The configuration parameters for the binding
-			 * @returns this pointer for chaining
-			 */
-			bindAggregation<K = keyof sap.ui.core.ElementAggregations>(
-				sAggregationName: K,
-				oBindingInfo: sap.ui.base.AggregationBindingInfo
-			): sap.m.IconTabBar;
 
 			/**
 			 * Destroys all the content in the aggregation <code>content</code>.

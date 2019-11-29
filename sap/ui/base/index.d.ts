@@ -384,7 +384,9 @@ declare namespace sap {
 				model?: string;
 			}
 
-			interface AggregationBindingInfo extends BindingInfo {
+			type ArrayElement<A> = A extends readonly (infer T)[] ? T : A;
+
+			interface AggregationBindingInfo<T = ManagedObject> extends BindingInfo {
 				/**
 				 * Path in the model to bind to, either an absolute path or relative to the binding context for the corresponding model;
 				 * when the path contains a '>' sign, the string preceding it will override the model property and the remainder after
@@ -395,7 +397,7 @@ declare namespace sap {
 				/**
 				 * The template to clone for each item in the aggregation; either a template or a factory must be given
 				 */
-				template?: ManagedObject;
+				template?: ArrayElement<T>;
 
 				/**
 				 * The initial sort order
@@ -727,7 +729,7 @@ declare namespace sap {
 				 */
 				bindAggregation<K extends keyof U>(
 					sName: K,
-					oBindingInfo: AggregationBindingInfo
+					oBindingInfo: AggregationBindingInfo<U[K]>
 				): sap.ui.base.ManagedObject;
 
 				/**
