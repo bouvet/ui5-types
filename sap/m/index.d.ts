@@ -12285,6 +12285,34 @@ declare namespace sap {
 			 */
 			setWrap(sWrap: sap.m.FlexWrap): sap.m.FlexBox;
 		}
+
+		namespace Toolbar {
+			interface Properties extends sap.ui.core.ControlProperties {
+				active?: boolean;
+				design?: sap.m.ToolbarDesign;
+				enabled?: boolean;
+				height?: string;
+				style?: sap.m.ToolbarStyle;
+				width?: string;
+			}
+
+			interface Aggregations extends sap.ui.core.ElementAggregations {
+				content?: sap.ui.core.Control[];
+			}
+
+			namespace Events {
+				namespace Press {
+					type Parameters = sap.ui.base.EventParameters & { srcControl: sap.ui.core.Control };
+					type Event = sap.ui.base.Event<Toolbar, Parameters>;
+					type Handler = (oEvent: Event) => void;
+				}
+			}
+			interface Events {
+				press: Events.Press.Handler;
+			}
+
+			type Settings = Properties | Aggregations | Events;
+		}
 		/**
 		 * The Toolbar control is a horizontal container that is most commonly used to display buttons, labels,
 		 * selects and various other input controls.By default, Toolbar items are shrinkable if they have
@@ -12294,7 +12322,7 @@ declare namespace sap {
 		 * unless you want to avoid overflow in favor of shrinking.
 		 * @resource sap/m/Toolbar.js
 		 */
-		export class Toolbar extends sap.ui.core.Control {
+		export class Toolbar<T extends Toolbar.Properties = Toolbar.Properties, U extends Toolbar.Aggregations = Toolbar.Aggregations> extends sap.ui.core.Control<T, U> {
 			/**
 			 * Sets classes and tag according to the context in the page. Possible contexts are header, footer,
 			 * subheader
@@ -12324,17 +12352,8 @@ declare namespace sap {
 			 * @param sId ID for the new control, generated automatically if no id is given
 			 * @param mSettings Initial settings for the new control
 			 */
-			constructor(sId: string, mSettings?: any);
-
-			/**
-			 * Constructor for a new Toolbar.Accepts an object literal <code>mSettings</code> that defines
-			 * initialproperty values, aggregated and associated objects as well as event handlers.See {@link
-			 * sap.ui.base.ManagedObject#constructor} for a general description of the syntax of the settings
-			 * object.
-			 * @param sId ID for the new control, generated automatically if no id is given
-			 * @param mSettings Initial settings for the new control
-			 */
-			constructor(mSettings?: any);
+			constructor(sId: string, mSettings?: Toolbar.Settings);
+			constructor(mSettings?: Toolbar.Settings);
 
 			/**
 			 * Adds some ariaLabelledBy into the association <code>ariaLabelledBy</code>.
@@ -12365,7 +12384,8 @@ declare namespace sap {
 			 * <code>sap.m.Toolbar</code> itself
 			 * @returns Reference to <code>this</code> in order to allow method chaining
 			 */
-			attachPress(oData: any, fnFunction: any, oListener?: any): sap.m.Toolbar;
+			attachPress(oData: any, fnFunction: Toolbar.Events.Press.Handler, oListener?: any): sap.m.Toolbar;
+			attachPress(fnFunction: Toolbar.Events.Press.Handler): sap.m.Toolbar;
 
 			/**
 			 * Destroys all the content in the aggregation <code>content</code>.
@@ -12381,7 +12401,7 @@ declare namespace sap {
 			 * @param oListener Context object on which the given function had to be called
 			 * @returns Reference to <code>this</code> in order to allow method chaining
 			 */
-			detachPress(fnFunction: any, oListener: any): sap.m.Toolbar;
+			detachPress(fnFunction: Toolbar.Events.Press.Handler, oListener: any): sap.m.Toolbar;
 
 			/**
 			 * Fires event <code>press</code> to attached listeners.Expects the following event
@@ -12390,7 +12410,7 @@ declare namespace sap {
 			 * @param mArguments The arguments to pass along with the event
 			 * @returns Reference to <code>this</code> in order to allow method chaining
 			 */
-			firePress(mArguments: any): sap.m.Toolbar;
+			firePress(mArguments: Toolbar.Events.Press.Parameters): sap.m.Toolbar;
 
 			/**
 			 * Gets current value of property <code>active</code>.Indicates that the whole toolbar is clickable.
@@ -34476,13 +34496,21 @@ declare namespace sap {
 			 */
 			unbindValue(): sap.m.RatingIndicator;
 		}
+
+		namespace OverflowToolbar {
+			interface Properties extends Toolbar.Properties {
+				asyncMode?: boolean;
+			}
+
+			type Settings = Properties;
+		}
 		/**
 		 * The OverflowToolbar control is a container based on sap.m.Toolbar, that provides overflow when its
 		 * content does not fit in the visible area.Note: It is recommended that you use OverflowToolbar over
 		 * {@link sap.m.Toolbar}, unless you want to avoid overflow in favor of shrinking.
 		 * @resource sap/m/OverflowToolbar.js
 		 */
-		export class OverflowToolbar extends sap.m.Toolbar {
+		export class OverflowToolbar extends sap.m.Toolbar<OverflowToolbar.Properties> {
 			/**
 			 * Constructor for a new Overflow ToolbarAccepts an object literal <code>mSettings</code> that defines
 			 * initialproperty values, aggregated and associated objects as well as event handlers.See {@link
@@ -34491,7 +34519,9 @@ declare namespace sap {
 			 * @param sId ID for the new control, generated automatically if no id is given
 			 * @param mSettings Initial settings for the new control
 			 */
-			constructor(sId: string, mSettings?: any);
+			constructor(sId: string, mSettings: OverflowToolbar.Settings);
+			constructor(mSettings: OverflowToolbar.Settings);
+			constructor();
 
 			/**
 			 * Closes the overflow area.Useful to manually close the overflow after having suppressed automatic
@@ -45383,6 +45413,14 @@ declare namespace sap {
 			"Info",
 			"Solid",
 			"Transparent"
+		}
+
+		/**
+		 * Types of visual styles for the sap.m.Toolbar.
+		 */
+		enum ToolbarStyle {
+			Clear = "Clear",
+			Standard = "Standard"
 		}
 		/**
 		 * Available options for the layout of individual elements along the cross axis of the flexbox layout
