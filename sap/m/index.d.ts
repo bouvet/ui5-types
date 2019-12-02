@@ -36970,29 +36970,36 @@ declare namespace sap {
 			setIconDensityAware(bIconDensityAware: boolean): sap.m.IconTabSeparator;
 		}
 
-		interface RadioButtonGroupProperties extends sap.ui.core.ControlProperties {
-			columns?: number;
-			editable?: boolean;
-			enabled?: boolean;
-			selectedIndex?: number;
-			textDirection?: sap.ui.core.TextDirection;
-			valueState?: sap.ui.core.ValueState;
-			width?: string;
-		}
+		namespace RadioButtonGroup {
+			interface Properties extends sap.ui.core.ControlProperties {
+				columns?: number;
+				editable?: boolean;
+				enabled?: boolean;
+				selectedIndex?: number;
+				textDirection?: sap.ui.core.TextDirection;
+				valueState?: sap.ui.core.ValueState;
+				width?: string;
+			}
 
-		interface RadioButtonGroupAggregations
-			extends sap.ui.core.ElementAggregations {
-			buttons?: sap.m.RadioButton[];
-		}
+			interface Aggregations extends sap.ui.core.ElementAggregations {
+				buttons?: sap.m.RadioButton[];
+			}
 
-		interface RadioButtonGroupEvents {
-			select?: sap.ui.base.EventHandler<RadioButtonGroup>;
-		}
+			namespace Events {
+				namespace Select {
+					type Parameters = sap.ui.base.EventParameters & { selectedIndex: number; };
+					type Event = sap.ui.base.Event<RadioButtonGroup, Select.Parameters>;
+					type Handler = (oEvent: Event) => void;
+				}
+			}
+			interface Events {
+				select: Events.Select.Handler;
+			}
 
-		type RadioButtonGroupSettings =
-			| RadioButtonGroupProperties
-			| RadioButtonGroupAggregations
-			| RadioButtonGroupEvents;
+			type Settings = RadioButtonGroup.Properties
+				| RadioButtonGroup.Aggregations
+				| RadioButtonGroup.Events;
+		}
 
 		/**
 		 * This control is used as a wrapper for a group of sap.m.RadioButton controls, which then can be used
@@ -37004,8 +37011,8 @@ declare namespace sap {
 		 * @resource sap/m/RadioButtonGroup.js
 		 */
 		export class RadioButtonGroup extends sap.ui.core.Control<
-			RadioButtonGroupProperties,
-			RadioButtonGroupAggregations
+			RadioButtonGroup.Properties,
+			RadioButtonGroup.Aggregations
 		> {
 			/**
 			 * Constructor for a new RadioButtonGroup.Accepts an object literal <code>mSettings</code> that defines
@@ -37015,8 +37022,8 @@ declare namespace sap {
 			 * @param sId ID for the new control, generated automatically if no ID is given
 			 * @param mSettings Initial settings for the new control
 			 */
-			constructor(sId: string, mSettings?: RadioButtonGroupSettings);
-			constructor(mSettings?: RadioButtonGroupSettings);
+			constructor(sId: string, mSettings?: RadioButtonGroup.Settings);
+			constructor(mSettings?: RadioButtonGroup.Settings);
 
 			/**
 			 * Adds some ariaDescribedBy into the association <code>ariaDescribedBy</code>.
@@ -37058,11 +37065,11 @@ declare namespace sap {
 			 */
 			attachSelect(
 				oData: any,
-				fnFunction: sap.ui.base.EventHandler<RadioButtonGroup>,
+				fnFunction: RadioButtonGroup.Events.Select.Handler,
 				oListener?: any
 			): sap.m.RadioButtonGroup;
 			attachSelect(
-				fnFunction: sap.ui.base.EventHandler<RadioButtonGroup>
+				fnFunction: RadioButtonGroup.Events.Select.Handler
 			): sap.m.RadioButtonGroup;
 
 			/**
@@ -37106,7 +37113,7 @@ declare namespace sap {
 			 * @param mArguments The arguments to pass along with the event
 			 * @returns Reference to <code>this</code> in order to allow method chaining
 			 */
-			fireSelect(mArguments: any): sap.m.RadioButtonGroup;
+			fireSelect(mArguments?: RadioButtonGroup.Events.Select.Parameters): sap.m.RadioButtonGroup;
 
 			/**
 			 * Returns array of IDs of the elements which are the current targets of the association
