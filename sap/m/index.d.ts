@@ -34502,7 +34502,7 @@ declare namespace sap {
 				asyncMode?: boolean;
 			}
 
-			type Settings = Properties;
+			type Settings = Properties & Toolbar.Settings;
 		}
 		/**
 		 * The OverflowToolbar control is a container based on sap.m.Toolbar, that provides overflow when its
