@@ -24388,7 +24388,7 @@ declare namespace sap {
 		 * maxCharacters.
 		 * @resource sap/m/FeedListItem.js
 		 */
-		export class FeedListItem extends sap.m.ListItemBase {
+		export class FeedListItem extends sap.m.ListItemBase<FeedListItem.Properties, FeedListItem.Aggregations> {
 			/**
 			 * Constructor for a new FeedListItem.Accepts an object literal <code>mSettings</code> that defines
 			 * initialproperty values, aggregated and associated objects as well as event handlers.See {@link
