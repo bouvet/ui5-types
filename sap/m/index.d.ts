@@ -24337,6 +24337,51 @@ declare namespace sap {
 			 */
 			getVisibility(): sap.m.ObjectMarkerVisibility;
 		}
+
+		namespace FeedListItem {
+			interface Properties extends ListItemBaseProperties {
+				activeIcon?: string;
+				convertLinksToAnchorTags?: sap.m.LinkConversion;
+				convertedLinksDefaultTarget?: string;
+				icon?: string;
+				iconActive?: boolean;
+				iconDensityAware?: boolean;
+				info?: string;
+				lessLabel?: string;
+				maxCharacters?: number;
+				moreLabel?: string;
+				sender?: string;
+				senderActive?: boolean;
+				showIcon?: boolean;
+				text?: string;
+				timestamp?: string;
+			}
+
+			interface Aggregations extends sap.ui.core.ElementAggregations {
+				actions?: sap.m.FeedListItemAction[];
+			}
+
+			namespace Events {
+				namespace IconPress {
+					type Parameters = sap.ui.base.EventParameters & { domRef: HTMLSpanElement; getDomRef: () => HTMLSpanElement; };
+					type Event = sap.ui.base.Event<FeedListItem, Parameters>;
+					type Handler = (oEvent: Event) => void;
+				}
+
+				namespace SenderPress {
+					type Parameters = sap.ui.base.EventParameters & { domRef: HTMLSpanElement; getDomRef: () => HTMLSpanElement; };
+					type Event = sap.ui.base.Event<FeedListItem, Parameters>;
+					type Handler = (oEvent: Event) => void;
+				}
+			}
+
+			interface Events extends ListItemBaseEvents {
+				iconPress: Events.IconPress.Handler;
+				senderPress: Events.SenderPress.Handler;
+			}
+
+			type Settings = Properties | Aggregations | Events;
+		}
 		/**
 		 * The control provides a set of properties for text, sender information, time stamp.Beginning with
 		 * release 1.23 the new feature expand / collapse was introduced, which uses the property
@@ -24352,7 +24397,9 @@ declare namespace sap {
 			 * @param sId id for the new control, generated automatically if no id is given
 			 * @param mSettings initial settings for the new control
 			 */
-			constructor(sId: string, mSettings?: any);
+			constructor(sId: string, mSettings: FeedListItem.Settings);
+			constructor(sId: string);
+			constructor(mSettings: FeedListItem.Settings);
 
 			/**
 			 * Attaches event handler <code>fnFunction</code> to the <code>iconPress</code> event of this
@@ -24368,8 +24415,12 @@ declare namespace sap {
 			 */
 			attachIconPress(
 				oData: any,
-				fnFunction: any,
-				oListener?: any
+				fnFunction: FeedListItem.Events.IconPress.Handler,
+				oListener: any
+			): sap.m.FeedListItem;
+			attachIconPress(
+				fnFunction: FeedListItem.Events.IconPress.Handler,
+				oListener: any
 			): sap.m.FeedListItem;
 
 			/**
@@ -24386,7 +24437,11 @@ declare namespace sap {
 			 */
 			attachSenderPress(
 				oData: any,
-				fnFunction: any,
+				fnFunction: FeedListItem.Events.SenderPress.Handler,
+				oListener?: any
+			): sap.m.FeedListItem;
+			attachSenderPress(
+				fnFunction: FeedListItem.Events.SenderPress.Handler,
 				oListener?: any
 			): sap.m.FeedListItem;
 
@@ -24398,7 +24453,7 @@ declare namespace sap {
 			 * @param oListener Context object on which the given function had to be called
 			 * @returns Reference to <code>this</code> in order to allow method chaining
 			 */
-			detachIconPress(fnFunction: any, oListener: any): sap.m.FeedListItem;
+			detachIconPress(fnFunction: FeedListItem.Events.IconPress.Handler, oListener: any): sap.m.FeedListItem;
 
 			/**
 			 * Detaches event handler <code>fnFunction</code> from the <code>senderPress</code> event of this
@@ -24408,7 +24463,7 @@ declare namespace sap {
 			 * @param oListener Context object on which the given function had to be called
 			 * @returns Reference to <code>this</code> in order to allow method chaining
 			 */
-			detachSenderPress(fnFunction: any, oListener: any): sap.m.FeedListItem;
+			detachSenderPress(fnFunction: FeedListItem.Events.SenderPress.Handler, oListener: any): sap.m.FeedListItem;
 
 			/**
 			 * Fires event <code>iconPress</code> to attached listeners.Expects the following event
@@ -24419,7 +24474,7 @@ declare namespace sap {
 			 * @param mArguments The arguments to pass along with the event
 			 * @returns Reference to <code>this</code> in order to allow method chaining
 			 */
-			fireIconPress(mArguments: any): sap.m.FeedListItem;
+			fireIconPress(mArguments?: FeedListItem.Events.IconPress.Parameters): sap.m.FeedListItem;
 
 			/**
 			 * Fires event <code>senderPress</code> to attached listeners.Expects the following event
@@ -24430,7 +24485,7 @@ declare namespace sap {
 			 * @param mArguments The arguments to pass along with the event
 			 * @returns Reference to <code>this</code> in order to allow method chaining
 			 */
-			fireSenderPress(mArguments: any): sap.m.FeedListItem;
+			fireSenderPress(mArguments?: FeedListItem.Events.SenderPress.Handler): sap.m.FeedListItem;
 
 			/**
 			 * Gets current value of property <code>activeIcon</code>.Icon displayed when the list item is active.
@@ -24636,6 +24691,10 @@ declare namespace sap {
 			 * @returns this allows method chaining
 			 */
 			setUnread(value: boolean): sap.m.FeedListItem;
+		}
+
+		export class FeedListItemAction extends sap.ui.core.Element {
+
 		}
 
 		interface ObjectStatusProperties extends sap.ui.core.ControlProperties {
@@ -45435,6 +45494,16 @@ declare namespace sap {
 			"Start",
 			"Stretch"
 		}
+
+		/**
+		 * Enumeration for possible link-to-anchor conversion strategies
+		 */
+		enum LinkConversion {
+			All = "All",
+			None = "None",
+			ProtocolOnly = "ProtocolOnly"
+		}
+
 		/**
 		 * Type of panels used in the personalization dialog.
 		 */
