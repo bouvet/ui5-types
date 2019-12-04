@@ -33390,10 +33390,10 @@ declare namespace sap {
 			 * parameter.
 			 */
 			to(
-				sPageId: string,
-				sTransitionName: string,
-				oData: any,
-				oTransitionParameters: any
+				sPageId: Page | string,
+				sTransitionName?: string,
+				oData?: any,
+				oTransitionParameters?: any
 			): sap.m.SplitContainer;
 
 			/**
@@ -33419,10 +33419,10 @@ declare namespace sap {
 			 * parameter.
 			 */
 			toDetail(
-				sPageId: string,
-				sTransitionName: string,
-				oData: any,
-				oTransitionParameter: any
+				sPageId: Page | string,
+				sTransitionName?: string,
+				oData?: any,
+				oTransitionParameter?: any
 			): sap.m.SplitContainer;
 
 			/**
@@ -33449,10 +33449,10 @@ declare namespace sap {
 			 * parameter.
 			 */
 			toMaster(
-				sPageId: string,
-				sTransitionName: string,
-				oData: any,
-				oTransitionParameters: any
+				sPageId: Page | string,
+				sTransitionName?: string,
+				oData?: any,
+				oTransitionParameters?: any
 			): sap.m.SplitContainer;
 		}
 		/**
