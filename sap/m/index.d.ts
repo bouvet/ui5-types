@@ -24024,6 +24024,9 @@ declare namespace sap {
 				fnFunction: any,
 				oListener?: any
 			): sap.m.ListItemBase;
+			attachDetailPress(			
+				fnFunction: any,				
+			): sap.m.ListItemBase;
 
 			/**
 			 * Attaches event handler <code>fnFunction</code> to the <code>detailTap</code> event of this
