@@ -4719,6 +4719,27 @@ declare namespace sap {
 				 */
 				setWidth(sWidth: any): sap.ui.core.Icon;
 			}
+
+			namespace HTML {
+				interface Properties extends ControlProperties {
+					content?: string;
+					preferDOM?: boolean;
+					sanitizeContent?: boolean;
+				}
+
+				namespace Events {
+					namespace AfterRendering {
+						type Parameters = base.EventParameters & { isPreservedDom: boolean };
+						type Handler = (oEvent: base.Event<HTML, Parameters>) => void;
+					}
+				}
+
+				interface Events {
+					afterRendering: Events.AfterRendering.Handler;
+				}
+
+				type Settings = Properties | ElementAggregations | Events;
+			}
 			/**
 			 * Embeds standard HTML in a SAPUI5 control tree.Security Hint: By default, the HTML content (property
 			 * 'content') is not sanitized and thereforeopen to XSS attacks. Applications that want to show user
@@ -4731,7 +4752,7 @@ declare namespace sap {
 			 * see also the documentation of the<code>content</code> property.
 			 * @resource sap/ui/core/HTML.js
 			 */
-			class HTML extends sap.ui.core.Control {
+			class HTML extends sap.ui.core.Control<HTML.Properties> {
 				/**
 				 * Constructor for a new HTML.Accepts an object literal <code>mSettings</code> that defines
 				 * initialproperty values, aggregated and associated objects as well as event handlers.See {@link
@@ -4740,7 +4761,10 @@ declare namespace sap {
 				 * @param sId id for the new control, generated automatically if no id is given
 				 * @param mSettings initial settings for the new control
 				 */
-				constructor(sId: string, mSettings?: any);
+				constructor(sId: string, mSettings: HTML.Settings);
+				constructor(sId: string);
+				constructor(mSettings: HTML.Settings);
+				constructor();
 
 				/**
 				 * Attaches event handler <code>fnFunction</code> to the <code>afterRendering</code> event of this
@@ -4758,8 +4782,15 @@ declare namespace sap {
 				 */
 				attachAfterRendering(
 					oData: any,
-					fnFunction: any,
-					oListener?: any
+					fnFunction: HTML.Events.AfterRendering.Handler,
+					oListener: any
+				): sap.ui.core.HTML;
+				attachAfterRendering(
+					oData: any,
+					fnFunction: HTML.Events.AfterRendering.Handler
+				): sap.ui.core.HTML;
+				attachAfterRendering(
+					fnFunction: HTML.Events.AfterRendering.Handler
 				): sap.ui.core.HTML;
 
 				/**
@@ -4770,7 +4801,7 @@ declare namespace sap {
 				 * @param oListener Context object on which the given function had to be called
 				 * @returns Reference to <code>this</code> in order to allow method chaining
 				 */
-				detachAfterRendering(fnFunction: any, oListener: any): sap.ui.core.HTML;
+				detachAfterRendering(fnFunction: HTML.Events.AfterRendering.Handler, oListener: any): sap.ui.core.HTML;
 
 				/**
 				 * Fires event <code>afterRendering</code> to attached listeners.Expects the following event
@@ -4780,7 +4811,8 @@ declare namespace sap {
 				 * @param mArguments The arguments to pass along with the event
 				 * @returns Reference to <code>this</code> in order to allow method chaining
 				 */
-				fireAfterRendering(mArguments: any): sap.ui.core.HTML;
+				fireAfterRendering(mArguments: HTML.Events.AfterRendering.Parameters): sap.ui.core.HTML;
+				fireAfterRendering(): sap.ui.core.HTML;
 
 				/**
 				 * Gets current value of property <code>content</code>.HTML content to be displayed, defined as a
