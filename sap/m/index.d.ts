@@ -8538,7 +8538,7 @@ declare namespace sap {
 
 		namespace Button {
 			interface Properties extends sap.ui.core.ControlProperties {
-				activeIcon: string;
+				activeIcon?: string;
 				enabled?: boolean;
 				icon?: string;
 				iconDensityAware?: boolean;
