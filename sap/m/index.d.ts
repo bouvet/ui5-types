@@ -18537,6 +18537,26 @@ declare namespace sap {
 			 */
 			unbindMenu(): sap.m.MenuButton;
 		}
+
+		namespace IconTabBar {
+			namespace Events {
+				namespace Select {
+					type Parameters = sap.ui.base.EventParameters & { 
+						item: sap.m.IconTabFilter;
+						key: string;
+						selectedItem: sap.m.IconTabFilter;
+						selectedKey: string;
+					}
+					type Handler = (oEvent: sap.ui.base.Event<IconTabBar, Parameters>) => void;
+				}
+			}
+
+			interface Events {
+				select: Events.Select.Handler;
+			}
+
+			type Settings = Events;
+		}
 		/**
 		 * The IconTabBar control represents a collection of tabs with associated content.IconTabBar covers the
 		 * following use cases:- Filter – There is only one main content for all tabs. The main content can be
@@ -18553,7 +18573,10 @@ declare namespace sap {
 			 * @param sId ID for the new control, generated automatically if no ID is given
 			 * @param mSettings Initial settings for the new control
 			 */
-			constructor(sId: string, mSettings?: any);
+			constructor(sId: string, mSettings: IconTabBar.Settings);
+			constructor(sId: string);
+			constructor(mSettings: IconTabBar.Settings);
+			constructor();
 
 			/**
 			 * Adds some content to the aggregation <code>content</code>.
@@ -18602,11 +18625,11 @@ declare namespace sap {
 			 */
 			attachSelect(
 				oData: any,
-				fnFunction: sap.ui.base.EventHandler<IconTabBar>,
+				fnFunction: IconTabBar.Events.Select.Handler,
 				oListener?: any
 			): sap.m.IconTabBar;
 			attachSelect(
-				fnFunction: sap.ui.base.EventHandler<IconTabBar>
+				fnFunction: IconTabBar.Events.Select.Handler
 			): sap.m.IconTabBar;
 
 
