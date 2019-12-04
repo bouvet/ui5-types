@@ -8525,6 +8525,7 @@ declare namespace sap {
 		}
 
 		interface ButtonProperties extends sap.ui.core.ControlProperties {
+			activeIcon: string;
 			enabled?: boolean;
 			icon?: string;
 			iconDensityAware?: boolean;
@@ -8536,7 +8537,27 @@ declare namespace sap {
 		}
 
 		namespace Button {
-			type Settings = ButtonProperties | sap.ui.core.ElementAggregations;
+			interface Properties extends sap.ui.core.ControlProperties {
+				activeIcon: string;
+				enabled?: boolean;
+				icon?: string;
+				iconDensityAware?: boolean;
+				iconFirst?: boolean;
+				text?: string;
+				textDirection?: sap.ui.core.TextDirection;
+				type?: sap.m.ButtonType;
+				width?: string;
+			}
+
+			namespace Events {
+				namespace Press {
+					type Handler = (oEvent: sap.ui.base.Event<Button>) => void;
+				}
+			}
+			interface Events {
+				press: Events.Press.Handler;
+			}
+			type Settings = Properties | sap.ui.core.ElementAggregations | Events;
 		}
 
 		/**
