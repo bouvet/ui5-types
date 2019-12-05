@@ -5578,6 +5578,17 @@ declare namespace sap {
 			}
 			namespace control {}
 			namespace resource {
+				namespace ResourceModel {
+					interface Properties {
+						bundleUrl?: string;
+						bundleName?: string;
+						bundleLocal?: string;
+						bundle?: sap.base.i18n.ResourceBundle;
+						async?: boolean;
+						defaultBindingMode?: sap.ui.model.BindingMode;
+						enhanceWith?: sap.base.i18n.ResourceBundle;
+					}
+				}
 				/**
 				 * Model implementation for resource bundles
 				 * @resource sap/ui/model/resource/ResourceModel.js
@@ -5601,7 +5612,7 @@ declare namespace sap {
 					 * @returns Promise in async case (async ResourceModel) which is resolved when the the enhancement is
 					 * finished
 					 */
-					enhance(oData: any | any): JQueryPromise<any>;
+					enhance(oData: sap.base.i18n.ResourceBundle | { bundleUrl?: string; bundleName?: string; bundleLocale?: string }): JQueryPromise<any>;
 
 					/**
 					 * Returns a metadata object for class sap.ui.model.resource.ResourceModel.
@@ -5619,7 +5630,7 @@ declare namespace sap {
 					 * Returns the resource bundle of this model
 					 * @returns loaded resource bundle or ECMA Script 6 Promise in asynchronous case
 					 */
-					getResourceBundle(): any | JQueryPromise<any>;
+					getResourceBundle(): sap.base.i18n.ResourceBundle | JQueryPromise<sap.base.i18n.ResourceBundle>;
 				}
 			}
 			namespace analytics {
@@ -7465,26 +7476,26 @@ declare namespace sap {
 				 */
 				var Control: any;
 			}
-			namespace BindingMode {
+			enum BindingMode {
 				/**
 				 * BindingMode default means that the binding mode of the model is used
 				 */
-				var Default: any;
+				Default = "Default",
 
 				/**
 				 * BindingMode one time means value is only read from the model once
 				 */
-				var OneTime: any;
+				OneTime = "OneTime",
 
 				/**
 				 * BindingMode one way means from model to view
 				 */
-				var OneWay: any;
+				OneWay = "OneWay",
 
 				/**
 				 * BindingMode two way means from model to view and vice versa
 				 */
-				var TwoWay: any;
+				TwoWay = "TwoWay"
 			}
 			namespace ChangeReason {
 				/**
