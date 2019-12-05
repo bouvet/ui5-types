@@ -32386,6 +32386,9 @@ declare namespace sap {
 				oPage: sap.ui.core.Control,
 				bMaster: boolean
 			): sap.m.SplitContainer;
+			addPage(
+				oPage: sap.ui.core.Control
+			): sap.m.SplitContainer;
 
 			/**
 			 * Attaches event handler <code>fnFunction</code> to the <code>afterDetailNavigate</code> event of this
