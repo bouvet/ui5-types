@@ -5599,7 +5599,7 @@ declare namespace sap {
 					 * @param oData parameters used to initialize the ResourceModel; at least either bundleUrl or
 					 * bundleName must be set on this object; if both are set, bundleName wins
 					 */
-					constructor(oData: any);
+					constructor(oData: ResourceModel.Properties);
 
 					/**
 					 * Enhances the resource model with a custom resource bundle. The resource modelcan be enhanced with
