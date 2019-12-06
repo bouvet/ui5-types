@@ -1,5 +1,3 @@
-/// <reference path="../model/index.d.ts" />
-
 declare namespace sap {
 	namespace ui {
 		namespace base {

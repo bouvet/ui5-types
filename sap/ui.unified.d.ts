@@ -1,5 +1,3 @@
-/// <reference path="../core/index.d.ts" />
-
 declare namespace sap {
 	namespace ui {
 		namespace unified {

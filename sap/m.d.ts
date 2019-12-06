@@ -1,5 +1,3 @@
-/// <reference path="../ui/index.d.ts" />
-
 // Type definitions for OpenUI5 1.40
 // Project: http://openui5.org/
 // Definitions by: Lukas May <https://www.dscsag.com/>

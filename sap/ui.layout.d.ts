@@ -1,5 +1,3 @@
-/// <reference path="./form/index.d.ts" />
-
 declare namespace sap {
 	namespace ui {
 		namespace layout {

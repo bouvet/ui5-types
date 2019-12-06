@@ -1,7 +1,3 @@
-/// <reference path="../base/index.d.ts" />
-/// <reference path="../../m/index.d.ts" />
-/// <reference path="./mvc/index.d.ts" />
-
 declare namespace sap {
 	namespace ui {
 		namespace core {
