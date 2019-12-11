@@ -5095,7 +5095,7 @@ declare namespace sap {
 							files: File[];
 						};
 						type Event = sap.ui.base.Event<FileUploader, Parameters>;
-						type Handler = (oEvent: Event) => void;
+						type Handler = (oEvent: Event) => any;
 					}
 				}
 
