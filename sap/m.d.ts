@@ -4849,7 +4849,7 @@ declare namespace sap {
 			 * @param mArguments The arguments to pass along with the event
 			 * @returns Whether or not to prevent the default action
 			 */
-			firePress(mArguments: any): boolean;
+			firePress(mArguments?: any): boolean;
 
 			/**
 			 */
