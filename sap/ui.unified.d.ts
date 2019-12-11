@@ -5052,6 +5052,58 @@ declare namespace sap {
 				 */
 				setVisible(bVisible: boolean): sap.ui.unified.MenuItemBase;
 			}
+
+			namespace FileUploader {
+				interface Properties extends sap.ui.core.ControlProperties {
+					additionalData?: string;
+					buttonOnly?: boolean;
+					buttonText?: string;
+					enabled?: boolean;
+					fileType?: string[];
+					icon?: string;
+					iconFirst?: boolean;
+					iconHovered?: string;
+					iconOnly?: boolean;
+					iconSelected?: string;
+					maximumFileSize?: number;
+					maximumFilenameLength?: number;
+					mimeType?: string[];
+					multiple?: boolean;
+					name?: string;
+					placeholder?: string;
+					sameFilenameAllowed?: boolean;
+					sendXHR?: boolean;
+					style?: 'Transparent' | 'Accept' | 'Reject' | 'Emphasized';
+					uploadOnChange?: boolean;
+					uploadUrl?: string;
+					useMultipart?: boolean;
+					value?: string;
+					valueState?: sap.ui.core.ValueState;
+					valueStateText?: string;
+					width?: string
+				}
+
+				interface Aggregations extends sap.ui.core.ElementAggregations {
+					headerParameters?: sap.ui.unified.FileUploaderParameter[];
+					parameters?: sap.ui.unified.FileUploaderParameter[];
+					xhrSettings?: sap.ui.unified.FileUploaderXHRSettings;
+				}
+				namespace Events {
+					namespace Change {
+						type Parameters = sap.ui.base.EventParameters & {
+							newValue: string;
+							files: File[];
+						};
+						type Handler = (oEvent: sap.ui.base.Event<FileUploader, Parameters>) => void;
+					}
+				}
+
+				interface Events {
+					change?: Events.Change.Handler;
+				}
+
+				type Settings = Properties | Aggregations | Events;
+			}
 			/**
 			 * The framework generates an input field and a button with text "Browse ...". The API supports
 			 * features such as on change uploads (the upload starts immediately after a file has been selected),
@@ -5068,17 +5120,8 @@ declare namespace sap {
 				 * @param sId id for the new control, generated automatically if no id is given
 				 * @param mSettings initial settings for the new control
 				 */
-				constructor(sId: string, mSettings?: any);
-
-				/**
-				 * Constructor for a new FileUploader.Accepts an object literal <code>mSettings</code> that defines
-				 * initialproperty values, aggregated and associated objects as well as event handlers.See {@link
-				 * sap.ui.base.ManagedObject#constructor} for a general description of the syntax of the settings
-				 * object.
-				 * @param sId id for the new control, generated automatically if no id is given
-				 * @param mSettings initial settings for the new control
-				 */
-				constructor(mSettings?: any);
+				constructor(sId: string, mSettings: FileUploader.Settings);
+				constructor(mSettings?: FileUploader.Settings);
 
 				/**
 				 * Aborts the currently running upload.
@@ -5120,8 +5163,11 @@ declare namespace sap {
 				 */
 				attachChange(
 					oData: any,
-					fnFunction: any,
+					fnFunction: FileUploader.Events.Change.Handler,
 					oListener?: any
+				): sap.ui.unified.FileUploader;
+				attachChange(
+					fnFunction: FileUploader.Events.Change.Handler
 				): sap.ui.unified.FileUploader;
 
 				/**
@@ -6115,6 +6161,10 @@ declare namespace sap {
 				 * Starts the upload (as defined by uploadUrl)
 				 */
 				upload(): void;
+			}
+
+			export class FileUploaderXHRSettings extends sap.ui.core.Element {
+
 			}
 			/**
 			 * Date range with calendar day type information. Used to visualize special days in the Calendar.
