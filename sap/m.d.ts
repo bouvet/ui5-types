@@ -21016,7 +21016,7 @@ declare namespace sap {
 		interface RadioButtonProperties extends sap.ui.core.ControlProperties {
 			editable?: boolean;
 			enabled?: boolean;
-			selected?: boolean;
+			selected?: boolean | sap.ui.base.PropertyBindingInfo<boolean>;
 			text?: string;
 			textAlign?: sap.ui.core.TextAlign;
 			textDirection?: sap.ui.core.TextDirection;
