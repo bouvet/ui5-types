@@ -25110,6 +25110,72 @@ declare namespace sap {
 			 */
 			setType(sType: sap.ui.core.MessageType): sap.m.MessageStrip;
 		}
+
+		namespace SelectDialog {
+			interface Properties extends sap.ui.core.ControlProperties {
+				confirmButtonText?: string;
+				contentHeight?: string;
+				contentWidth?: string;
+				draggable?: boolean;
+				growing?: boolean;
+				growingThreshold?: number;
+				multiSelect?: boolean;
+				noDataText?: string;
+				rememberSelections?: boolean;
+				resizable?: boolean;
+				showClearButton?: boolean;
+				title?: string;
+				titleAlignment?: sap.m.TitleAlignment;
+			}
+
+			interface Aggregations extends sap.ui.core.ElementAggregations {
+				items?: sap.m.ListItemBase[];
+			}
+
+			namespace Events {
+				namespace Cancel {
+					type Handler = (oEvent: sap.ui.base.EventHandler<SelectDialog>) => any;
+				}
+
+				namespace Confirm {
+					type Parameters = {
+						selectedItem: sap.m.ListItemBase;
+						selectedItems: sap.m.ListItemBase[];
+						selectedContexts: sap.ui.model.ContextBinding[];
+					} & sap.ui.base.EventParameters;
+
+					type Handler = (oEvent: sap.ui.base.EventHandler<SelectDialog, Parameters>) => any;
+				}
+
+				namespace LiveChange {
+					type Parameters = {
+						value: string;
+						itemsBinding: sap.ui.model.ListBinding;
+					} & sap.ui.base.EventParameters;
+
+					type Handler = (oEvent: sap.ui.base.EventHandler<SelectDialog, Parameters>) => any;
+				}
+
+				namespace Search {
+					type Parameters = {
+						value: string;
+						itemsBinding: sap.ui.model.ListBinding;
+						clearButtonPressed: boolean;
+					} & sap.ui.base.EventParameters;
+
+					type Handler = (oEvent: sap.ui.base.EventHandler<SelectDialog, Parameters>) => any;
+				}
+			}
+
+			interface Events {
+				cancel?: Events.Cancel.Handler;
+				confirm?: Events.Confirm.Handler;
+				liveChange?: Events.LiveChange.Handler;
+				search?: Events.Search.Handler;
+			}
+
+			type Settings = Properties | Aggregations | Events;
+		}
 		/**
 		 * A SelectDialog is a dialog containing a list, search functionality to filter it and a
 		 * confirmation/cancel button. The control can be used when the user should select one or multiple
@@ -25134,7 +25200,10 @@ declare namespace sap {
 			 * @param sId ID for the new control, generated automatically if no ID is given
 			 * @param mSettings Initial settings for the new control
 			 */
-			constructor(sId: string, mSettings?: any);
+			constructor(sId: string, mSettings: SelectDialog.Settings);
+			constructor(mSettings: SelectDialog.Settings);
+			constructor(sId: string);
+			constructor();
 
 			/**
 			 * Adds some item to the aggregation <code>items</code>.
@@ -25158,7 +25227,11 @@ declare namespace sap {
 			 */
 			attachCancel(
 				oData: any,
-				fnFunction: any,
+				fnFunction: SelectDialog.Events.Cancel.Handler,
+				oListener?: any
+			): sap.m.SelectDialog;
+			attachCancel(
+				fnFunction: SelectDialog.Events.Cancel.Handler,
 				oListener?: any
 			): sap.m.SelectDialog;
 
@@ -25178,7 +25251,11 @@ declare namespace sap {
 			 */
 			attachConfirm(
 				oData: any,
-				fnFunction: any,
+				fnFunction: SelectDialog.Events.Confirm.Handler,
+				oListener?: any
+			): sap.m.SelectDialog;
+			attachConfirm(
+				fnFunction: SelectDialog.Events.Confirm.Handler,
 				oListener?: any
 			): sap.m.SelectDialog;
 
@@ -25197,7 +25274,11 @@ declare namespace sap {
 			 */
 			attachLiveChange(
 				oData: any,
-				fnFunction: any,
+				fnFunction: SelectDialog.Events.LiveChange.Handler,
+				oListener?: any
+			): sap.m.SelectDialog;
+			attachLiveChange(
+				fnFunction: SelectDialog.Events.LiveChange.Handler,
 				oListener?: any
 			): sap.m.SelectDialog;
 
@@ -25216,7 +25297,11 @@ declare namespace sap {
 			 */
 			attachSearch(
 				oData: any,
-				fnFunction: any,
+				fnFunction: SelectDialog.Events.Search.Handler,
+				oListener?: any
+			): sap.m.SelectDialog;
+			attachSearch(
+				fnFunction: SelectDialog.Events.Search.Handler,
 				oListener?: any
 			): sap.m.SelectDialog;
 
@@ -25271,7 +25356,8 @@ declare namespace sap {
 			 * @param mArguments The arguments to pass along with the event
 			 * @returns Reference to <code>this</code> in order to allow method chaining
 			 */
-			fireCancel(mArguments: any): sap.m.SelectDialog;
+			fireCancel(mArguments: sap.ui.base.EventHandler<SelectDialog>): sap.m.SelectDialog;
+			fireCancel(): sap.m.SelectDialog;
 
 			/**
 			 * Fires event <code>confirm</code> to attached listeners.Expects the following event
@@ -25290,7 +25376,8 @@ declare namespace sap {
 			 * @param mArguments The arguments to pass along with the event
 			 * @returns Reference to <code>this</code> in order to allow method chaining
 			 */
-			fireConfirm(mArguments: any): sap.m.SelectDialog;
+			fireConfirm(mArguments: SelectDialog.Events.Confirm.Parameters): sap.m.SelectDialog;
+			fireConfirm(): sap.m.SelectDialog;
 
 			/**
 			 * Fires event <code>liveChange</code> to attached listeners.Expects the following event
@@ -25301,7 +25388,8 @@ declare namespace sap {
 			 * @param mArguments The arguments to pass along with the event
 			 * @returns Reference to <code>this</code> in order to allow method chaining
 			 */
-			fireLiveChange(mArguments: any): sap.m.SelectDialog;
+			fireLiveChange(mArguments: SelectDialog.Events.LiveChange.Parameters): sap.m.SelectDialog;
+			fireLiveChange(): sap.m.SelectDialog;
 
 			/**
 			 * Fires event <code>search</code> to attached listeners.Expects the following event
@@ -25312,7 +25400,8 @@ declare namespace sap {
 			 * @param mArguments The arguments to pass along with the event
 			 * @returns Reference to <code>this</code> in order to allow method chaining
 			 */
-			fireSearch(mArguments: any): sap.m.SelectDialog;
+			fireSearch(mArguments: SelectDialog.Events.Search.Parameters): sap.m.SelectDialog;
+			fireSearch(): sap.m.SelectDialog;
 
 			/**
 			 * Get the internal Dialog's contentHeight property {@link sap.m.Dialog}
