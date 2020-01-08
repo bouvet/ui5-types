@@ -8549,7 +8549,7 @@ declare namespace sap {
 
 			namespace Events {
 				namespace Press {
-					type Handler = (oEvent: sap.ui.base.Event<Button>) => void;
+					type Handler = (oEvent: sap.ui.base.EventHandler<Button>) => void;
 				}
 			}
 			interface Events {
@@ -8654,14 +8654,16 @@ declare namespace sap {
 			 * @param mArguments The arguments to pass along with the event
 			 * @returns Reference to <code>this</code> in order to allow method chaining
 			 */
-			firePress(mArguments: any): sap.m.Button;
+			firePress(mArguments: sap.ui.base.EventParameters): sap.m.Button;
+			firePress(): sap.m.Button;
 
 			/**
 			 * Fires event <code>tap</code> to attached listeners.
 			 * @param mArguments The arguments to pass along with the event
 			 * @returns Reference to <code>this</code> in order to allow method chaining
 			 */
-			fireTap(mArguments: any): sap.m.Button;
+			fireTap(mArguments: sap.ui.base.EventParameters): sap.m.Button;
+			fireTap(): sap.m.Button;
 
 			/**
 			 */
