@@ -10907,6 +10907,10 @@ declare namespace sap {
 			fireStepActivate(mArguments: any): sap.m.Wizard;
 
 			/**
+			 * Gets the ID of the element which is the current target of the association currentStep, or null.
+			 */
+			getCurrentStep(): string;
+			/**
 			 * Gets current value of property <code>enableBranching</code>.Enables the branching functionality of
 			 * the Wizard.Branching gives the developer the ability to define multiple routes a useris able to take
 			 * based on the input in the current step.It is up to the developer to programatically check for what
@@ -11025,6 +11029,11 @@ declare namespace sap {
 			 * Dynamic step removal is not yet supported.
 			 */
 			removeStep(): void;
+
+			/**
+			 * Sets association currentStep to the given step.
+			 */
+			setCurrentStep(vStepId: sap.m.WizardStep | string): sap.m.Wizard;
 
 			/**
 			 * Sets a new value for property <code>enableBranching</code>.Enables the branching functionality of
