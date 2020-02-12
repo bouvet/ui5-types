@@ -6384,6 +6384,16 @@ declare namespace sap {
 				 * This control is now being displayed and not animated anymore.
 				 */
 				onAfterShow?: sap.ui.base.EventHandler;
+
+				/**
+				 * The event is fired every time a key is pressed.
+				 */
+				onkeydown?: KeyboardEvent;
+
+				/**
+				 * The event is fired every time a key is lifted.
+				 */
+				onkeyup?: KeyboardEvent;
 			}
 
 			interface ElementAggregations {
