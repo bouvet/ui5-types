@@ -6388,12 +6388,12 @@ declare namespace sap {
 				/**
 				 * The event is fired every time a key is pressed.
 				 */
-				onkeydown?: KeyboardEvent;
+				onkeydown?: (oEvent: KeyboardEvent) => any;
 
 				/**
 				 * The event is fired every time a key is lifted.
 				 */
-				onkeyup?: KeyboardEvent;
+				onkeyup?: (oEvent: KeyboardEvent) => any;
 			}
 
 			interface ElementAggregations {
