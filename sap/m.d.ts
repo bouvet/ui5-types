@@ -14035,6 +14035,23 @@ declare namespace sap {
 			 */
 			synchronizeSelection(): void;
 		}
+
+		namespace TextArea {
+			interface Properties extends InputBaseProperties {
+				cols?: number,
+				growing?: boolean;
+				growingMaxLines?: number;
+				height?: string;
+				maxLength?: number;
+				rows?: number;
+				showExceededText?: boolean;
+				valueLiveUpdate?: boolean;
+				wrapping?: sap.ui.core.Wrapping;
+			}
+
+			type Settings = InputBaseSettings & Properties;
+		}
+
 		/**
 		 * The <code>sap.m.TextArea</code> enables multi-line text input.
 		 * @resource sap/m/TextArea.js
@@ -14048,7 +14065,9 @@ declare namespace sap {
 			 * @param sId ID for the new control, generated automatically if no ID is given
 			 * @param mSettings Initial settings for the new control
 			 */
-			constructor(sId: string, mSettings?: any);
+			constructor(sId: string, mSettings: TextArea.Settings);
+			constructor(mSettings: TextArea.Settings);
+			constructor();
 
 			/**
 			 * Attaches event handler <code>fnFunction</code> to the <code>liveChange</code> event of this
@@ -14068,6 +14087,7 @@ declare namespace sap {
 				fnFunction: any,
 				oListener?: any
 			): sap.m.TextArea;
+			attachLiveChange(fnFunction: InputBaseChangeEvent);
 
 			/**
 			 * Detaches event handler <code>fnFunction</code> from the <code>liveChange</code> event of this
