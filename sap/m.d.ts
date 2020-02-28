@@ -5417,6 +5417,44 @@ declare namespace sap {
 			 */
 			unbindText(): sap.m.Text;
 		}
+
+		enum PanelAccessibleRole {
+			Complementary = 'Complementary',
+			Form = 'Form',
+			Region = 'Region'
+		}
+
+		namespace Panel {
+			interface Properties extends sap.ui.core.ControlProperties {
+				accessibleRole: sap.m.PanelAccessibleRole;
+				backgroundDesign: sap.m.BackgroundDesign;
+				expandAnimation: boolean;
+				expandable: boolean;
+				expanded: boolean;
+				headerText: string;
+				height: string;
+				width: string;
+			}
+
+			interface Aggregations extends sap.ui.core.ElementAggregations {
+				content: sap.ui.core.Control[];
+				headerToolbar: sap.m.Toolbar;
+				infoToolbar: sap.m.Toolbar;
+			}
+
+			namespace Events {
+				namespace Expand {
+					type Parameters = sap.ui.base.EventParameters & { expand: boolean; triggeredByInteraction: boolean };
+					type Handler = (oEvent: sap.ui.base.Event<Panel, Parameters>) => any;
+				}
+			}
+
+			interface Events {
+				expand: Events.Expand.Handler
+			}
+
+			type Settings = Partial<Properties & Aggregations & Events>;
+		}
 		/**
 		 * The Panel control is a container for controls which has a header and content.The header is always
 		 * visible while the content can be collapsed if the Panel is expandable.
@@ -5431,7 +5469,9 @@ declare namespace sap {
 			 * @param sId id for the new control, generated automatically if no id is given
 			 * @param mSettings initial settings for the new control
 			 */
-			constructor(sId: string, mSettings?: any);
+			constructor(sId: string, mSettings: Panel.Settings);
+			constructor(mSettings: Panel.Settings);
+			constructor(sId: string);
 
 			/**
 			 * Adds some content to the aggregation <code>content</code>.
@@ -5454,6 +5494,7 @@ declare namespace sap {
 			 * @returns Reference to <code>this</code> in order to allow method chaining
 			 */
 			attachExpand(oData: any, fnFunction: any, oListener?: any): sap.m.Panel;
+			attachExpand(fnFunction: Panel.Events.Expand.Handler): sap.m.Panel;
 
 			/**
 			 * Destroys all the content in the aggregation <code>content</code>.
@@ -5484,7 +5525,8 @@ declare namespace sap {
 			 * @param oListener Context object on which the given function had to be called
 			 * @returns Reference to <code>this</code> in order to allow method chaining
 			 */
-			detachExpand(fnFunction: any, oListener: any): sap.m.Panel;
+			detachExpand(fnFunction: Panel.Events.Expand.Handler, oListener: any): sap.m.Panel;
+			detachExpand(fnFunction: Panel.Events.Expand.Handler): sap.m.Panel;
 
 			/**
 			 * Fires event <code>expand</code> to attached listeners.Expects the following event
@@ -5494,7 +5536,7 @@ declare namespace sap {
 			 * @param mArguments The arguments to pass along with the event
 			 * @returns Reference to <code>this</code> in order to allow method chaining
 			 */
-			fireExpand(mArguments: any): sap.m.Panel;
+			fireExpand(mArguments: Partial<Panel.Events.Expand.Parameters>): sap.m.Panel;
 
 			/**
 			 * Gets current value of property <code>backgroundDesign</code>.This property is used to set the
