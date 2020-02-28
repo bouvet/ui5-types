@@ -31122,6 +31122,15 @@ declare namespace sap {
 			 */
 			setWithMargin(bWithMargin: boolean): sap.m.NumericContent;
 		}
+
+		namespace CustomListItem {
+			interface Aggregations extends sap.ui.core.ElementAggregations {
+				content: sap.ui.core.Control[];
+			}
+
+			type Settings = ListItemBaseSettings & Aggregations;
+		}
+
 		/**
 		 * This control with a content aggregation can be used to customize standard list items that we don't
 		 * provide. List mode and ListItem type are applied to CustomListItems as well.<b>Note:</b> Even though
@@ -31129,7 +31138,7 @@ declare namespace sap {
 		 * Form</code>) should not be aggregated as content.
 		 * @resource sap/m/CustomListItem.js
 		 */
-		export class CustomListItem extends sap.m.ListItemBase {
+		export class CustomListItem extends sap.m.ListItemBase<ListItemBaseProperties, CustomListItem.Aggregations> {
 			/**
 			 * Constructor for a new CustomListItem.Accepts an object literal <code>mSettings</code> that defines
 			 * initialproperty values, aggregated and associated objects as well as event handlers.See {@link
@@ -31138,7 +31147,9 @@ declare namespace sap {
 			 * @param sId ID for the new control, generated automatically if no ID is given
 			 * @param mSettings Initial settings for the new control
 			 */
-			constructor(sId: string, mSettings?: any);
+			constructor(sId: string, mSettings: Partial<CustomListItem.Settings>);
+			constructor(mSettings: Partial<CustomListItem.Settings>);
+			constructor(sId: string);
 
 			/**
 			 * Adds some content to the aggregation <code>content</code>.
