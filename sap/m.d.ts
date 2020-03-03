@@ -4259,6 +4259,14 @@ declare namespace sap {
 			setContentOnlyBusy(bContentOnlyBusy: boolean): sap.m.Page;
 
 			/**
+			 * Sets the aggregated <code>customHeader</code>.
+			 * @since 1.15.1
+			 * @param oCustomHeader The customHeader to set
+			 * @returns Reference to <code>this</code> in order to allow method chaining
+			 */
+			setCustomHeader(oCustomHeader: sap.m.IBar): sap.m.Page;
+
+			/**
 			 * Sets a new value for property <code>enableScrolling</code>.Enable vertical scrolling of page
 			 * contents. Page headers and footers are fixed and do not scroll.If set to false, there will be no
 			 * scrolling at all.The Page only allows vertical scrolling because horizontal scrolling is discouraged
