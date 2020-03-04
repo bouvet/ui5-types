@@ -408,7 +408,7 @@ declare namespace sap {
 				filters?: sap.ui.model.Filter[];
 			}
 
-			interface SinglePropertyBindingInfo extends BindingInfo {
+			type SinglePropertyBindingInfo = string | BindingInfo & {
 				/**
 				 * Path in the model to bind to, either an absolute path or relative to the binding context for the corresponding model;
 				 * when the path contains a '>' sign, the string preceding it will override the model property and the remainder after
