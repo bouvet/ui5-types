@@ -23475,7 +23475,7 @@ declare namespace sap {
 			 * transition.
 			 */
 			backToTop(
-				oBackData: any,
+				oBackData?: any,
 				oTransitionParameters?: any
 			): sap.m.NavContainer;
 
