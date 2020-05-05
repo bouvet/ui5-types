@@ -5463,12 +5463,18 @@ declare namespace sap {
 
 			type Settings = Partial<Properties & Aggregations & Events>;
 		}
+		namespace Panel{
+			interface Properties extends sap.ui.core.ControlProperties {
+				expanded: boolean,
+			}
+		}
+
 		/**
 		 * The Panel control is a container for controls which has a header and content.The header is always
 		 * visible while the content can be collapsed if the Panel is expandable.
 		 * @resource sap/m/Panel.js
 		 */
-		export class Panel extends sap.ui.core.Control {
+		export class Panel extends sap.ui.core.Control<Panel.Properties> {
 			/**
 			 * Constructor for a new Panel.Accepts an object literal <code>mSettings</code> that defines
 			 * initialproperty values, aggregated and associated objects as well as event handlers.See {@link
