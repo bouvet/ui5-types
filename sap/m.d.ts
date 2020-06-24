@@ -15504,7 +15504,7 @@ declare namespace sap {
 			showValueStateMessage?: boolean;
 			textAlign?: sap.ui.core.TextAlign;
 			textDirection?: sap.ui.core.TextDirection;
-			value?: string;
+			value?: sap.ui.base.PropertyBindingInfo<string>;
 			valueState?: sap.ui.core.ValueState;
 			valueStateText?: string;
 			width?: string;
