@@ -249,6 +249,42 @@ declare namespace sap {
 					 */
 					setWidth(sWidth: any): sap.ui.layout.form.Form;
 				}
+
+				namespace SimpleForm {
+					interface Properties extends sap.ui.core.ControlProperties {
+						adjustLabelSpan: boolean;
+						backgroundDesign: sap.ui.layout.BackgroundDesign;
+						breakpointL: number;
+						breakpointM: number;
+						breakpointXL: number;
+						columnsL: number;
+						columnsM: number;
+						columnsXL: number;
+						editable: boolean;
+						emptySpanL: number;
+						emptySpanM: number;
+						emptySpanXL: number;
+						labelMinWidth: number;
+						labelSpanL: number;
+						labelSpanM: number;
+						labelSpanS: number;
+						labelSpanXL: number;
+						layout: sap.ui.layout.form.SimpleFormLayout;
+						maxContainerCols: number;
+						minWidth: number;
+						singleContainerFullSize: boolean;
+						width: string;
+					}
+
+					interface Aggregations extends sap.ui.core.ElementAggregations {
+						content: sap.ui.core.Element[];
+						title: sap.ui.core.Title;
+						toolbar: sap.ui.core.Toolbar;
+					}
+
+					type Settings = Partial<Properties & Aggregations>;
+				}
+
 				/**
 				 * The <code>SimpleForm</code> provides an easy-to-use API to create simple forms.Inside a
 				 * <code>SimpleForm</code>, a <code>Form</code> control is created along with its
@@ -260,7 +296,7 @@ declare namespace sap {
 				 * controls.<b>Note:</b> If a more complex form is needed, use <code>Form</code> instead.
 				 * @resource sap/ui/layout/form/SimpleForm.js
 				 */
-				export class SimpleForm extends sap.ui.core.Control {
+				export class SimpleForm extends sap.ui.core.Control<SimpleForm.Properties, SimpleForm.Aggregations> {
 					/**
 					 * Constructor for a new sap.ui.layout.form.SimpleForm.Accepts an object literal <code>mSettings</code>
 					 * that defines initialproperty values, aggregated and associated objects as well as event handlers.See
@@ -269,7 +305,9 @@ declare namespace sap {
 					 * @param sId ID for the new control, generated automatically if no ID is given
 					 * @param mSettings Initial settings for the new control
 					 */
-					constructor(sId: string, mSettings?: any);
+					constructor(sId: string, mSettings: SimpleForm.Settings);
+					constructor(mSettings: SimpleForm.Settings);
+					constructor(sId: string);
 
 					/**
 					 * Adds some ariaLabelledBy into the association <code>ariaLabelledBy</code>.
