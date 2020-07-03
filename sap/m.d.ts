@@ -23268,7 +23268,16 @@ declare namespace sap {
 			setSrc(sSrc: any): sap.m.ImageContent;
 		}
 
-		type TransitionName = "show" | "slide" | "fade" | "flip";
+		type TransitionName = "show" | "slide" | "fade" | "flip" | "slideBack";
+
+		namespace NavContainer {
+			interface PageStackEntry {
+				id: string;
+				isInitial?: boolean;
+				data: any;
+				transition?: TransitionName;
+			}
+		}
 
 		/**
 		 * The NavContainer control handles hierarchic navigation between Pages or other fullscreen
@@ -23288,6 +23297,8 @@ declare namespace sap {
 			 */
 			constructor(sId: string, mSettings?: any);
 			constructor(mSettings?: any);
+
+			protected _pageStack: NavContainer.PageStackEntry[];
 
 			/**
 			 * Adds a custom transition to the NavContainer type (not to a particular instance!). The transition is
