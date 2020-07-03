@@ -10962,6 +10962,8 @@ declare namespace sap {
 			 */
 			fireStepActivate(mArguments: any): sap.m.Wizard;
 
+			getBackgroundDesign(): sap.m.PageBackgroundDesign;
+
 			/**
 			 * Gets the ID of the element which is the current target of the association currentStep, or null.
 			 */
@@ -11085,6 +11087,8 @@ declare namespace sap {
 			 * Dynamic step removal is not yet supported.
 			 */
 			removeStep(): void;
+
+			setBackgroundDesign(vBackgroundDesign?: sap.m.PageBackgroundDesign): void;
 
 			/**
 			 * Sets association currentStep to the given step.
