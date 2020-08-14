@@ -7357,7 +7357,14 @@ declare namespace sap {
 			unbindSuggestionRows(): sap.m.Input;
 		}
 
-		interface ImageProperties extends sap.ui.core.ControlProperties {}
+		namespace Image {
+			interface Properties extends sap.ui.core.ControlProperties {
+				src: string;
+				mode: sap.m.ImageMode
+			}
+
+			type Settings = Partial<Properties>;
+		}
 
 		/**
 		 * A wrapper around the IMG tag. The image can be loaded from a remote or local server.Density related
@@ -7372,7 +7379,7 @@ declare namespace sap {
 		 * 'backgroundSize' should be set to the dimension of the normal density version.
 		 * @resource sap/m/Image.js
 		 */
-		export class Image extends sap.ui.core.Control<ImageProperties> {
+		export class Image extends sap.ui.core.Control<Image.Properties> {
 			/**
 			 * Constructor for a new Image.Accepts an object literal <code>mSettings</code> that defines
 			 * initialproperty values, aggregated and associated objects as well as event handlers.See {@link
@@ -7381,7 +7388,9 @@ declare namespace sap {
 			 * @param sId id for the new control, generated automatically if no id is given
 			 * @param mSettings initial settings for the new control
 			 */
-			constructor(sId: string, mSettings?: any);
+			constructor(sId: string, mSettings: Image.Settings);
+			constructor(sId: string);
+			constructor(mSettings: Image.Settings);
 
 			/**
 			 * Attaches event handler <code>fnFunction</code> to the <code>error</code> event of this
@@ -12083,7 +12092,7 @@ declare namespace sap {
 				items?: sap.ui.core.Control[];
 			}
 
-			type Settings = Properties | Aggregations;
+			type Settings = Partial<Properties | Aggregations>;
 		}
 		/**
 		 * The <code>sap.m.FlexBox</code> control builds the container for a flexible box layout.Browser
