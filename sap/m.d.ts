@@ -12036,7 +12036,7 @@ declare namespace sap {
 				 * Determines the layout behavior of items along the cross-axis.
 				 * @default sap.m.FlexAlignItems.Stretch
 				 */
-				alignItems?: sap.m.FlexAlignItems;
+				alignItems?: EnumKeyOf<sap.m.FlexAlignItems>;
 
 				/**
 				 * Defines the background style of the **sap.m.FlexBox**.
@@ -12068,7 +12068,7 @@ declare namespace sap {
 				/**
 				 * Determines the layout behavior along the main axis.
 				 */
-				justifyContent?: sap.m.FlexJustifyContent;
+				justifyContent?: sap.m.FlexJustifyContent | keyof typeof sap.m.FlexJustifyContent;
 
 				/**
 				 * Determines whether the layout is rendered as a series of divs or as an unordered list (ul).

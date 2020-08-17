@@ -10,3 +10,5 @@
 /// <reference path="./sap/ui.unified.d.ts" />
 /// <reference path="./sap/base.d.ts" />
 /// <reference path="./jquery/index.d.ts" />
+
+type EnumKeyOf<T> = T | keyof T;
