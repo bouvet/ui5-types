@@ -14156,7 +14156,7 @@ declare namespace sap {
 				fnFunction: any,
 				oListener?: any
 			): sap.m.TextArea;
-			attachLiveChange(fnFunction: InputBaseChangeEvent);
+			attachLiveChange(fnFunction: InputBaseChangeEvent): sap.m.TextArea;
 
 			/**
 			 * Detaches event handler <code>fnFunction</code> from the <code>liveChange</code> event of this

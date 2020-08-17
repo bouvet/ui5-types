@@ -319,7 +319,7 @@ declare namespace sap {
 					 * @param sId undefined
 					 * @returns the template for the given id
 					 */
-					byId(sId: string): any;
+					byId<T extends sap.ui.core.Control>(id: string): T;
 
 					/**
 					 * Creates an anonymous TemplateControl for the Template.
@@ -5318,7 +5318,7 @@ declare namespace sap {
 				 * @param sName name of the model to be retrieved
 				 * @returns oModel
 				 */
-				getModel(sName: string | any): sap.ui.model.Model;
+				getModel<T extends sap.ui.model.Model>(id?: string): T;
 
 				/**
 				 */
@@ -5519,7 +5519,7 @@ declare namespace sap {
 				 * @param sName the name of the model or <code>undefined</code>
 				 * @returns <code>this</code> to allow method chaining
 				 */
-				setModel(oModel: sap.ui.model.Model, sName?: string): sap.ui.core.Core;
+				setModel<T extends sap.ui.model.Model>(model: T, id?: string): T;
 
 				/**
 				 * Implicitly creates a new <code>UIArea</code> (or reuses an exiting one) for the given DOM reference
@@ -7573,7 +7573,7 @@ declare namespace sap {
 				bindProperty<K extends keyof ListItem.Properties>(
 					sProperty: K,
 					oBindingInfo: base.PropertyBindingInfo<ListItem.Properties[K]>
-				);
+				): sap.ui.base.ManagedObject<any, any>;
 
 				/**
 				 * Gets current value of property <code>additionalText</code>.Some additional text of type string,
