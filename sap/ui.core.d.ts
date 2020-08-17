@@ -32,7 +32,7 @@ declare namespace sap {
 				openAsContextMenu(
 					oEvent: string,
 					oOpenerRef: sap.ui.core.Element | Element
-				);
+				): void;
 			}
 
 			namespace ID {}
