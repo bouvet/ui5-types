@@ -28262,12 +28262,21 @@ declare namespace sap {
 			 */
 			setShowIcon(bShowIcon: boolean): sap.m.PullToRefresh;
 		}
+
+		namespace ToolbarSpacer {
+			interface Properties extends sap.ui.core.ControlProperties {
+				width: string;
+			}
+
+			type Settings = Partial<Properties | sap.ui.base.ElementAggregations>;
+		}
+
 		/**
 		 * This control can be used to add horizontal space between toolbar items.Note: ToolbarLayoutData
 		 * should not be used with this control.
 		 * @resource sap/m/ToolbarSpacer.js
 		 */
-		export class ToolbarSpacer extends sap.ui.core.Control {
+		export class ToolbarSpacer extends sap.ui.core.Control<ToolbarSpacer.Properties> {
 			/**
 			 * Flexible Spacer Class Name
 			 */
@@ -28281,7 +28290,9 @@ declare namespace sap {
 			 * @param sId id for the new control, generated automatically if no id is given
 			 * @param mSettings initial settings for the new control
 			 */
-			constructor(sId: string, mSettings?: any);
+			constructor(sId: string, mSettings: ToolbarSpacer.Settings);
+			constructor(sId: string);
+			constructor(mSettings: ToolbarSpacer.Settings);
 
 			/**
 			 * Returns a metadata object for class sap.m.ToolbarSpacer.
