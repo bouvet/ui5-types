@@ -28268,7 +28268,7 @@ declare namespace sap {
 				width: string;
 			}
 
-			type Settings = Partial<Properties | sap.ui.base.ElementAggregations>;
+			type Settings = Partial<Properties | sap.ui.core.ElementAggregations>;
 		}
 
 		/**
