@@ -28293,6 +28293,7 @@ declare namespace sap {
 			constructor(sId: string, mSettings: ToolbarSpacer.Settings);
 			constructor(sId: string);
 			constructor(mSettings: ToolbarSpacer.Settings);
+			constructor();
 
 			/**
 			 * Returns a metadata object for class sap.m.ToolbarSpacer.
