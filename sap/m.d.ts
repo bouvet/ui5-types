@@ -12030,24 +12030,25 @@ declare namespace sap {
 				 * Determines the layout behavior of container lines when there's extra space along the cross-axis.
 				 * @default sap.m.FlexAlignContent.Stretch
 				 */
-				alignContent?: sap.m.FlexAlignContent;
+				alignContent?: sap.m.FlexAlignContent | keyof typeof sap.m.FlexAlignContent;
 
 				/**
 				 * Determines the layout behavior of items along the cross-axis.
 				 * @default sap.m.FlexAlignItems.Stretch
 				 */
-				alignItems?: EnumKeyOf<sap.m.FlexAlignItems>;
+				alignItems?: sap.m.FlexAlignItems | keyof typeof sap.m.FlexAlignItems;
 
 				/**
 				 * Defines the background style of the **sap.m.FlexBox**.
 				 * @default sap.m.BackgroundDesign.Transparent
 				 */
-				backgroundDesign?: sap.m.BackgroundDesign;
+				backgroundDesign?: sap.m.BackgroundDesign | keyof typeof sap.m.BackgroundDesign;
 
 				/**
 				 * Determines the direction of the layout of child elements.
+				 * @default sap.m.FlexDirection.Row
 				 */
-				direction: sap.m.FlexDirection;
+				direction: sap.m.FlexDirection | keyof typeof sap.m.FlexDirection;
 
 				/**
 				 * Determines whether the **sap.m.FlexBox** is in block or inline mode.
