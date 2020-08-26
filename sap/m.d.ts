@@ -6433,7 +6433,7 @@ declare namespace sap {
 			 * This parameter is intended to be used with touch devices that use different soft keyboard layouts depending on the given input type.
 			 * Only the default value sap.m.InputType.Text may be used in combination with data model formats. sap.ui.model defines extended formats that are mostly incompatible with normal HTML representations for numbers and dates.
 			 */
-			type?: sap.m.InputType;
+			type?: sap.m.InputType | keyof typeof sap.m.InputType;
 
 			/**
 			 * If set to true, direct text input is disabled and the control will trigger the event "valueHelpRequest" for all user interactions.

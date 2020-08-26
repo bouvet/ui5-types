@@ -33,6 +33,7 @@ declare namespace sap {
 				 * @param mSettings initial settings for the new control
 				 */
 				constructor(sId: string, mSettings?: any);
+				constructor(mSettings?: any);
 
 				/**
 				 * Adds some content to the aggregation <code>content</code>.
