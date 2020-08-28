@@ -12108,7 +12108,7 @@ declare namespace sap {
 				items?: sap.ui.core.Control[];
 			}
 
-			type Settings = Partial<Properties | Aggregations>;
+			type Settings = sap.ui.base.ObjectSettings<Properties> | Partial<Aggregations>;
 		}
 		/**
 		 * The <code>sap.m.FlexBox</code> control builds the container for a flexible box layout.Browser
