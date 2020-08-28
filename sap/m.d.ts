@@ -3807,24 +3807,25 @@ declare namespace sap {
 		}
 
 		interface PageProperties extends sap.ui.core.ControlProperties {
-			showFooter?: boolean;
-			showHeader?: boolean;
-			showNavButton?: boolean;
-			showSubHeader?: boolean;
-			title?: string;
-			titleLevel?: string;
+			enableScrolling: boolean;
+			showFooter: boolean;
+			showHeader: boolean;
+			showNavButton: boolean;
+			showSubHeader: boolean;
+			title: string;
+			titleLevel: string;
 		}
 
 		interface PageAggregations extends sap.ui.core.ElementAggregations {
-			content?: sap.ui.core.Control[];
-			customHeader?: sap.m.IBar;
-			footer?: sap.m.IBar;
-			headerContent?: sap.ui.core.Control[];
-			landmarkInfo?: sap.m.PageAccessibleLandmarkInfo;
-			subHeader?: sap.m.IBar;
+			content: sap.ui.core.Control[];
+			customHeader: sap.m.IBar;
+			footer: sap.m.IBar;
+			headerContent: sap.ui.core.Control[];
+			landmarkInfo: sap.m.PageAccessibleLandmarkInfo;
+			subHeader: sap.m.IBar;
 		}
 
-		type PageSettings = PageProperties | PageAggregations;
+		type PageSettings = sap.ui.base.ObjectSettings<PageProperties> | Partial<PageAggregations>;
 		/**
 		 * A page is a basic container for a mobile application screen. Usually one page is displayed at a time
 		 * (in landscape mode or on tablets depending on the layout two pages might be displayed side-by-side).
@@ -8629,7 +8630,7 @@ declare namespace sap {
 
 			namespace Events {
 				namespace Press {
-					type Handler = (oEvent: sap.ui.base.EventHandler<Button>) => void;
+					type Handler = sap.ui.base.EventHandler<Button>;
 				}
 			}
 			interface Events {
