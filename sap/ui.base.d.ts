@@ -408,7 +408,7 @@ declare namespace sap {
 				filters?: sap.ui.model.Filter[];
 			}
 
-			type SinglePropertyBindingInfo = string | BindingInfo & {
+			type SinglePropertyBindingInfo<T> = string | T | BindingInfo & {
 				/**
 				 * Path in the model to bind to, either an absolute path or relative to the binding context for the corresponding model;
 				 * when the path contains a '>' sign, the string preceding it will override the model property and the remainder after
@@ -426,7 +426,7 @@ declare namespace sap {
 			}
 
 			type PropertyBindingInfo<T> =
-				| SinglePropertyBindingInfo
+				| SinglePropertyBindingInfo<T>
 				| MultiPropertyBindingInfo
 				| {
 						/**
@@ -435,6 +435,8 @@ declare namespace sap {
 						formatter?: (...args: any[]) => T;
 				  };
 
+
+			type ObjectSettings<T> = Partial<{ [P in keyof T]: PropertyBindingInfo<T[P]> }>;
 			/**
 			 * Base Class that introduces some basic concepts like state management or databinding.New subclasses
 			 * of ManagedObject are created with a call to {@link .extend ManagedObject.extend} and can make useof

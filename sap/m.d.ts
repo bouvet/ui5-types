@@ -5177,6 +5177,21 @@ declare namespace sap {
 			wrappingType?: sap.m.WrappingType;
 		}
 
+		namespace Text {
+			interface Properties extends sap.ui.core.ControlProperties {
+				maxLines: number;
+				renderWhitespace: boolean;
+				text: string;
+				textAlign: sap.ui.core.TextAlign;
+				textDirection: sap.ui.core.TextDirection;
+				width: string;
+				wrapping: boolean;
+				wrappingType: sap.m.WrappingType;
+			}
+
+			type Settings = sap.ui.base.ObjectSettings<Properties>;
+		}
+
 		/**
 		 * The <code>Text</code> control can be used for embedding longer text paragraphs, that need text
 		 * wrapping, into your app.If the configured text value contains HTML code or script tags, those will
@@ -5184,7 +5199,7 @@ declare namespace sap {
 		 * the <code>wrapping</code> property is set to <code>false</code>.
 		 * @resource sap/m/Text.js
 		 */
-		export class Text extends sap.ui.core.Control<TextProperties> {
+		export class Text extends sap.ui.core.Control<Text.Properties> {
 			/**
 			 * Determines per instance whether line height should be cached or not.Default value is true.
 			 * @since 1.22
@@ -5222,8 +5237,8 @@ declare namespace sap {
 			 * @param sId ID for the new control, generated automatically if no ID is given
 			 * @param mSettings Initial settings for the new control
 			 */
-			constructor(sId: string, mSettings?: TextProperties);
-			constructor(mSettings?: TextProperties);
+			constructor(sId: string, mSettings?: Text.Settings);
+			constructor(mSettings?: Text.Settings);
 
 			/**
 			 * Binds property <code>text</code> to model data.See {@link sap.ui.base.ManagedObject#bindProperty
