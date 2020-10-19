@@ -33,7 +33,69 @@ declare interface Ui5Logger {
 	//Creates a new warning-level entry in the log with the given message, details and calling component.
 	warning(sMessage: string, sDetails?: string, sComponent?: string): void;
 }
+
+declare enum StorageTypes {
+	/**
+	 * Indicates usage of the browser's localStorage feature
+	 */
+	local = 'local',
+
+	/**
+	 * Indicates usage of the browsers's sessionStorage feature
+	 */
+	session = 'session'
+}
+
+declare class SapStorage {
+	/**
+	 * Deletes all the entries saved in the session (Independent of the current Storage instance!).
+	 * CAUTION: This method should be called only in very particular situations, when a global erasing of data is required. Given that the method deletes the data saved under any ID, it should not be called when managing data for specific controls.
+	 */
+	clear(): boolean;
+
+	/**
+	 * Retrieves the state string stored in the session under the key sStorageKeyPrefix + sId.
+	 * sStorageKeyPrefix is the id prefix defined for the storage instance (@see jQuery.sap#storage)
+	 * @param sId Id for the state to retrieve
+	 */
+	get(sId: string): string;
+
+	/**
+	 * Returns the type of storage
+	 */
+	getType(): StorageTypes | 'unknown';
+
+	/**
+	 * Returns whether the given storage is suppported.
+	 */
+	isSupported(): boolean;
+
+	/**
+	 * Stores the passed state string in the session, under the key sStorageKeyPrefix + sId.
+	 * sStorageKeyPrefix is the id prefix defined for the storage instance (@see jQuery.sap#storage)
+	 * @param sId Id for the state to store
+	 * @param sStateToStore Content to store
+	 */
+	put(sId: string, sStateToStore: string): boolean;
+
+	/**
+	 * Deletes the state string stored in the session under the key sStorageKeyPrefix + sId.s
+	 * sStorageKeyPrefix is the id prefix defined for the storage instance (@see jQuery.sap#storage)
+	 * @param sId ID for the state to delete
+	 */
+	remove(sId: string): boolean;
+
+	/**
+	 * Deletes all state strings stored in the session under the key prefix sStorageKeyPrefix + sIdPrefix.
+	 * sStorageKeyPrefix is the id prefix defined for the storage instance (@see jQuery.sap#storage)
+	 * @param sIdPrefix Id prefix for the states to delete
+	 */
+	removeAll(sIdPrefix: string): boolean;
+}
+
 declare interface JquerySap {
+	storage: { Type: typeof StorageTypes } & ((type: StorageTypes) => SapStorage);
+
 	log: Ui5Logger;
 	// Adds a whitelist entry for URL valiadtion
 	addUrlWhitelist(protocol: any, host: any, port: any, path: any): void;
