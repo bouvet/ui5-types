@@ -8636,7 +8636,7 @@ declare namespace sap {
 			interface Events {
 				press: Events.Press.Handler;
 			}
-			type Settings = Properties | sap.ui.core.ElementAggregations | Events;
+			type Settings = sap.ui.base.ObjectSettings<Properties> | sap.ui.core.ElementAggregations | Events;
 		}
 
 		/**

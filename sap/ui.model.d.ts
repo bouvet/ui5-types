@@ -5624,7 +5624,7 @@ declare namespace sap {
 					 * Returns the value for the property with the given <code>sPropertyName</code>
 					 * @param sPath the path to the property
 					 */
-					getProperty(sPath: string): any;
+					getProperty(sPath: string): string;
 
 					/**
 					 * Returns the resource bundle of this model
