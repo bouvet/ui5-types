@@ -17591,6 +17591,12 @@ declare namespace sap {
 			getCustomIconWidth(): any;
 
 			/**
+			 * Gets the DOM reference for the BusyDialog.
+			 * @returns Dom reference
+			 */
+			getDomRef(): HTMLDivElement;
+
+			/**
 			 * Returns a metadata object for class sap.m.BusyDialog.
 			 * @returns Metadata object describing this class
 			 */
