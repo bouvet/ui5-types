@@ -17437,6 +17437,36 @@ declare namespace sap {
 			 */
 			setWidth(sWidth: any): sap.m.QuickView;
 		}
+
+		namespace BusyDialog {
+			namespace Events {
+				namespace Close {
+					type Parameters = sap.ui.base.EventParameters & {
+						cancelPressed: boolean;
+					}
+
+					type Handler = sap.ui.base.EventHandler<BusyDialog, Parameters>;
+				}
+			}
+
+			interface Events {
+				close: Events.Close.Handler;
+			}
+
+			interface Properties extends sap.ui.core.ControlProperties {
+				cancelButtonText: string;
+				customIcon: string;
+				custonIconDensityAware: boolean;
+				customIconHeight: string;
+				customIconRotationSpeed: number;
+				customIconWidth: string;
+				showCancelButton: boolean;
+				text: string;
+				title: string;
+			}
+
+			type Settings = sap.ui.base.ObjectSettings<Properties> | Partial<Events>;
+		}
 		/**
 		 * BusyDialog is used to indicate that the system is busy and the user has to wait.
 		 * @resource sap/m/BusyDialog.js
@@ -17450,7 +17480,9 @@ declare namespace sap {
 			 * @param sId ID for the new control, generated automatically if no ID is given.
 			 * @param mSettings Initial settings for the new control.
 			 */
-			constructor(sId: string, mSettings?: any);
+			constructor(sId: string, mSettings?: BusyDialog.Settings);
+			constructor(mSettings: BusyDialog.Settings);
+			constructor();
 
 			/**
 			 * Adds some ariaLabelledBy into the association <code>ariaLabelledBy</code>.
@@ -17475,9 +17507,10 @@ declare namespace sap {
 			 */
 			attachClose(
 				oData: any,
-				fnFunction: any,
+				fnFunction: BusyDialog.Events.Close.Handler,
 				oListener?: any
 			): sap.m.BusyDialog;
+			attachClose(fnFunction: BusyDialog.Events.Close.Handler)
 
 			/**
 			 * Closes the BusyDialog.
