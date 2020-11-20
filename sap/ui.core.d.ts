@@ -4428,7 +4428,7 @@ declare namespace sap {
 				 * @param mArguments The arguments to pass along with the event
 				 * @returns Reference to <code>this</code> in order to allow method chaining
 				 */
-				firePress(mArguments: any): sap.ui.core.Icon;
+				firePress(mArguments?: any): sap.ui.core.Icon;
 
 				/**
 				 */
